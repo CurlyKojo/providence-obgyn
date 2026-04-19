@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Book a Visit — Providence OBGYN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
+<style>
+  .book-body { display: grid; grid-template-columns: 1.5fr 1fr; border-bottom: 1px solid var(--rule); }
+  .book-form { padding: 80px 64px 96px; }
+  .book-form h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(36px, 3.8vw, 52px); letter-spacing: -0.02em; line-height: 1.05; margin: 12px 0 8px; }
+  .book-form h2 em { font-style: italic; color: var(--wine); }
+  .book-form .lede { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--ink-soft); margin: 0 0 48px; max-width: 520px; }
+
+  .step { border-top: 1px solid var(--rule); padding: 32px 0 8px; display: grid; grid-template-columns: 100px 1fr; gap: 32px; }
+  .step-n { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 48px; color: var(--wine); line-height: 0.8; }
+  .step-n .of { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-light); text-transform: uppercase; margin-top: 12px; font-style: normal; }
+  .step h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 26px; letter-spacing: -0.01em; margin: 0 0 8px; }
+  .step > div:last-child { padding-bottom: 28px; }
+  .step p.help { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--ink-light); margin: 0 0 20px; }
+
+  .field-grid { display: grid; gap: 12px; }
+  .field-grid.two { grid-template-columns: 1fr 1fr; }
+  .field-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .f { border: 1px solid var(--rule-2); padding: 12px 14px; background: var(--paper); transition: border-color .15s; }
+  .f:focus-within { border-color: var(--wine); }
+  .f .lab { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--wine); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .f input, .f select, .f textarea { width: 100%; border: 0; outline: 0; background: transparent; font: inherit; font-size: 14px; color: var(--ink); padding: 0; font-family: 'Inter', sans-serif; }
+  .f textarea { min-height: 84px; resize: vertical; }
+
+  .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .choice { padding: 18px 18px 20px; border: 1px solid var(--rule-2); background: var(--paper); cursor: pointer; transition: all .15s; position: relative; }
+  .choice:hover { border-color: var(--ink-soft); }
+  .choice.sel { border-color: var(--wine); background: var(--paper); box-shadow: inset 0 0 0 1px var(--wine); }
+  .choice .n { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--wine); text-transform: uppercase; }
+  .choice h5 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 18px; margin: 6px 0 4px; letter-spacing: -0.01em; }
+  .choice h5 em { font-style: italic; color: var(--wine); }
+  .choice p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--ink-light); margin: 0; }
+  .choice.sel::after { content: "✓"; position: absolute; top: 10px; right: 12px; color: var(--wine); font-size: 14px; }
+
+  .time-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .day { padding: 14px 6px; text-align: center; background: var(--paper); border: 1px solid var(--rule-2); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); cursor: pointer; transition: all .15s; }
+  .day .d { display: block; font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--ink); letter-spacing: 0; text-transform: none; margin-top: 2px; }
+  .day:hover { border-color: var(--wine); }
+  .day.sel { background: var(--wine); color: var(--paper); border-color: var(--wine); }
+  .day.sel .d { color: var(--paper); }
+  .day.off { opacity: 0.35; cursor: not-allowed; }
+
+  .slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 14px; }
+  .slot { padding: 12px 10px; text-align: center; background: var(--paper); border: 1px solid var(--rule-2); font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; cursor: pointer; color: var(--ink); transition: all .15s; }
+  .slot:hover { border-color: var(--wine); color: var(--wine); }
+  .slot.sel { background: var(--wine); color: var(--paper); border-color: var(--wine); }
+  .slot.off { opacity: 0.35; cursor: not-allowed; text-decoration: line-through; }
+
+  .submit-bar { border-top: 1px solid var(--rule); padding-top: 32px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .submit-bar .promise { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); }
+  .submit-bar .promise strong { font-weight: 500; color: var(--wine); }
+
+  /* Sidebar */
+  .book-aside { background: var(--paper-2); padding: 80px 56px 64px; border-left: 1px solid var(--rule); }
+  .summary-card { background: var(--paper); border: 1px solid var(--rule-2); padding: 28px 28px 30px; position: sticky; top: 120px; }
+  .summary-card h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; margin: 0 0 20px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .summary-card h4 em { font-style: italic; color: var(--wine); }
+  .sum-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px dashed var(--rule); font-size: 14px; }
+  .sum-row:last-of-type { border-bottom: 0; }
+  .sum-row .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-light); text-transform: uppercase; }
+  .sum-row .v { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--ink); text-align: right; max-width: 60%; }
+  .sum-row .v.empty { color: var(--ink-light); opacity: 0.6; }
+
+  .promise-list { margin-top: 32px; padding: 24px; background: var(--wine-deep); color: var(--paper); }
+  .promise-list .eyebrow { color: #c2a25a; }
+  .promise-list .eyebrow::before { background: #c2a25a; }
+  .promise-list h5 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; margin: 14px 0 16px; color: var(--paper); }
+  .promise-list h5 em { font-style: italic; color: #c2a25a; }
+  .promise-list ul { list-style: none; padding: 0; margin: 0; }
+  .promise-list li { padding: 8px 0 8px 22px; position: relative; font-size: 14px; line-height: 1.55; color: rgba(244,239,230,0.85); border-bottom: 1px solid rgba(244,239,230,0.12); }
+  .promise-list li:last-child { border-bottom: 0; }
+  .promise-list li::before { content: "✓"; position: absolute; left: 0; top: 8px; color: #c2a25a; font-size: 12px; }
+
+  /* Alternatives */
+  section.alt-contact { padding: 80px 64px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .alt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 48px auto 0; }
+  .alt-card { padding: 32px 30px; background: var(--paper); border: 1px solid var(--rule-2); text-align: left; }
+  .alt-card .icon { width: 40px; height: 40px; border: 1px solid var(--wine); color: var(--wine); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; margin-bottom: 18px; border-radius: 50%; }
+  .alt-card h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .alt-card h4 em { font-style: italic; color: var(--wine); }
+  .alt-card p { font-size: 14px; color: var(--ink-soft); margin: 0 0 14px; line-height: 1.55; }
+  .alt-card .big { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--wine); }
+
+  @media (max-width: 1100px) {
+    .book-body { grid-template-columns: 1fr; }
+    .book-aside { border-left: 0; border-top: 1px solid var(--rule); padding: 48px 40px; }
+    .summary-card { position: static; }
+    .step { grid-template-columns: 1fr; gap: 12px; }
+    .field-grid.two, .field-grid.three { grid-template-columns: 1fr; }
+    .choice-grid, .alt-grid { grid-template-columns: 1fr; }
+    .time-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .book-form, .book-aside, section.alt-contact { padding-left: 24px; padding-right: 24px; }
+    .slots { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+<header class="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="resources.html">Resources</a>
+    <a href="portal.html">Patient Portal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="inner">
+    <div>
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>Book a visit</div>
+      <span class="eyebrow" style="margin-top:12px">Request an appointment</span>
+      <h1>Let's find a time <em>that suits you.</em></h1>
+    </div>
+    <p class="lede">Tell us a bit about your visit and a day that works — our front desk confirms within one business day, by phone.</p>
+  </div>
+</section>
+
+<section class="book-body">
+  <div class="book-form">
+    <span class="eyebrow">New or returning</span>
+    <h2>Appointment <em>request.</em></h2>
+    <p class="lede">Takes about three minutes. All requests go directly to our office — not a third-party scheduler.</p>
+
+    <!-- Step 1 -->
+    <div class="step">
+      <div class="step-n">i.<span class="of">Step 01 / 04</span></div>
+      <div>
+        <h3>Who is this visit for?</h3>
+        <p class="help">Providence sees women and adolescents ages 12 and up.</p>
+        <div class="choice-grid">
+          <div class="choice sel"><span class="n">01</span><h5>That's <em>me.</em></h5><p>I'm the patient requesting care.</p></div>
+          <div class="choice"><span class="n">02</span><h5>A <em>family member</em></h5><p>A daughter, spouse, or dependent.</p></div>
+          <div class="choice"><span class="n">03</span><h5>Prefer not to say</h5><p>Keep it private until we talk.</p></div>
+        </div>
+        <div class="field-grid two" style="margin-top:16px">
+          <div class="f"><span class="lab">First name</span><input type="text" placeholder="Patient first name"/></div>
+          <div class="f"><span class="lab">Last name</span><input type="text" placeholder="Patient last name"/></div>
+        </div>
+        <div class="field-grid three" style="margin-top:10px">
+          <div class="f"><span class="lab">Date of birth</span><input type="text" placeholder="MM / DD / YYYY"/></div>
+          <div class="f"><span class="lab">Phone</span><input type="tel" placeholder="(702) ·· — ··"/></div>
+          <div class="f"><span class="lab">Email</span><input type="email" placeholder="you@example.com"/></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-n">ii.<span class="of">Step 02 / 04</span></div>
+      <div>
+        <h3>What kind of visit?</h3>
+        <p class="help">Not sure? Choose "Help me decide" and Dr. Symone's team will recommend during confirmation.</p>
+        <div class="choice-grid">
+          <div class="choice"><span class="n">01 · Annual</span><h5>Well-woman <em>exam</em></h5><p>Annual physical, Pap, screening.</p></div>
+          <div class="choice sel"><span class="n">02 · Obstetric</span><h5>Prenatal — <em>first visit</em></h5><p>Early pregnancy · 60 min.</p></div>
+          <div class="choice"><span class="n">03 · Concern</span><h5>Problem visit</h5><p>Pain, bleeding, specific concern.</p></div>
+          <div class="choice"><span class="n">04 · Teen</span><h5>Adolescent <em>first visit</em></h5><p>12–18 · conversation-first.</p></div>
+          <div class="choice"><span class="n">05 · Midlife</span><h5>Menopause <em>consultation</em></h5><p>Perimenopause · HRT · 60 min.</p></div>
+          <div class="choice"><span class="n">06 · Unsure</span><h5>Help me <em>decide</em></h5><p>We'll recommend during confirmation.</p></div>
+        </div>
+        <div class="f" style="margin-top:16px"><span class="lab">Anything to share ahead of time? (optional)</span><textarea placeholder="A brief note about what's going on — or questions you'd like to cover."></textarea></div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step">
+      <div class="step-n">iii.<span class="of">Step 03 / 04</span></div>
+      <div>
+        <h3>Preferred day &amp; time</h3>
+        <p class="help">These are Dr. Symone's upcoming openings. Pick a preference — we'll confirm the exact slot.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="eyebrow" style="margin:0">Week of April 13, 2026</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--ink-light)">◀ PREV &nbsp;·&nbsp; NEXT ▶</span></div>
+        <div class="time-grid">
+          <div class="day off">Sun<span class="d">12</span></div>
+          <div class="day">Mon<span class="d">13</span></div>
+          <div class="day">Tue<span class="d">14</span></div>
+          <div class="day sel">Wed<span class="d">15</span></div>
+          <div class="day">Thu<span class="d">16</span></div>
+          <div class="day">Fri<span class="d">17</span></div>
+          <div class="day off">Sat<span class="d">18</span></div>
+        </div>
+        <div class="slots">
+          <div class="slot">8:30a</div>
+          <div class="slot">9:15a</div>
+          <div class="slot off">10:00a</div>
+          <div class="slot sel">11:00a</div>
+          <div class="slot off">1:30p</div>
+          <div class="slot">2:15p</div>
+          <div class="slot">3:00p</div>
+          <div class="slot">4:00p</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step">
+      <div class="step-n">iv.<span class="of">Step 04 / 04</span></div>
+      <div>
+        <h3>Insurance &amp; finishing touches</h3>
+        <p class="help">We'll verify coverage before your visit so there are no surprises.</p>
+        <div class="field-grid two">
+          <div class="f"><span class="lab">Primary insurance</span><select><option>Select your carrier</option><option>Blue Cross Blue Shield</option><option>Aetna</option><option>Cigna</option><option>United Healthcare</option><option>Anthem</option><option>Tricare</option><option>Sierra Health Options</option><option>Self-pay</option><option>Other / not sure</option></select></div>
+          <div class="f"><span class="lab">Member ID (optional)</span><input type="text" placeholder="Leave blank if unsure"/></div>
+        </div>
+        <div class="field-grid two" style="margin-top:10px">
+          <div class="f"><span class="lab">How did you find us?</span><select><option>A friend or family member</option><option>Dr. Symone's reputation</option><option>Google / online search</option><option>My primary care doctor</option><option>Another OBGYN referral</option><option>Other</option></select></div>
+          <div class="f"><span class="lab">Preferred contact method</span><select><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
+        </div>
+        <div class="submit-bar">
+          <span class="promise">We'll confirm <strong>within one business day</strong>. Your info is never shared.</span>
+          <button class="btn primary lg" onclick="alert('Request received — our front desk will call you shortly.')">Send request <span class="arrow">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="book-aside">
+    <div class="summary-card">
+      <h4>Visit <em>summary</em></h4>
+      <div class="sum-row"><span class="k">Patient</span><span class="v">Ready to fill in</span></div>
+      <div class="sum-row"><span class="k">Visit type</span><span class="v">Prenatal · first visit</span></div>
+      <div class="sum-row"><span class="k">Length</span><span class="v">60 minutes</span></div>
+      <div class="sum-row"><span class="k">Day</span><span class="v">Wed · April 15</span></div>
+      <div class="sum-row"><span class="k">Time</span><span class="v">11:00 am</span></div>
+      <div class="sum-row"><span class="k">Provider</span><span class="v">Dr. Symone</span></div>
+      <div class="sum-row"><span class="k">Location</span><span class="v">Summerlin · Suite 200</span></div>
+    </div>
+
+    <div class="promise-list">
+      <span class="eyebrow">Our promise</span>
+      <h5>What you can <em>expect.</em></h5>
+      <ul>
+        <li>Confirmation call within one business day</li>
+        <li>Insurance verified before your visit</li>
+        <li>New-patient paperwork sent to your email</li>
+        <li>No double-booking — your time is kept</li>
+        <li>Dr. Symone reads every new-patient note herself</li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
+<section class="alt-contact">
+  <div class="section-head" style="max-width:1100px;margin:0 auto 0">
+    <div>
+      <span class="eyebrow">Other ways to reach us</span>
+      <h2>Prefer <em>a human voice?</em></h2>
+    </div>
+    <p class="aside">The form is the easiest — but our front desk answers during business hours and we love a real phone call.</p>
+  </div>
+  <div class="alt-grid">
+    <div class="alt-card">
+      <div class="icon">☏</div>
+      <h4>Call <em>the office</em></h4>
+      <p>Monday to Thursday, 8a–5p. Friday mornings 'til noon. A person, not a phone tree.</p>
+      <div class="big">(702) 555-0142</div>
+    </div>
+    <div class="alt-card">
+      <div class="icon">✉</div>
+      <h4>Send <em>an email</em></h4>
+      <p>For non-urgent scheduling. We reply within one business day — never a pooled inbox.</p>
+      <div class="big">hello@providenceobgyn.com</div>
+    </div>
+    <div class="alt-card">
+      <div class="icon">✦</div>
+      <h4>Visit <em>in person</em></h4>
+      <p>Walk in during business hours for questions or to meet the team. No appointment needed.</p>
+      <div class="big">Summerlin · Suite 200</div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Already a patient?</span>
+  <h2>Log in to <em>the portal.</em></h2>
+  <p class="lede">Existing patients can message Dr. Symone, view results, request refills, and manage visits through our secure patient portal.</p>
+  <div class="ctas">
+    <a href="portal.html" class="btn primary">Patient portal <span class="arrow">→</span></a>
+    <a href="faq.html" class="btn gold">Read FAQ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="services.html">Prenatal &amp; obstetrics</a></li><li><a href="services.html">Well-woman exams</a></li><li><a href="services.html">Fertility support</a></li><li><a href="services.html">Menopause care</a></li><li><a href="services.html">Gyn surgery</a></li><li><a href="services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="about.html">About Dr. Symone</a></li><li><a href="about.html">Our values</a></li><li><a href="book.html">New patient info</a></li><li><a href="resources.html">Pregnancy resources</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="contact.html">Summerlin Medical Plaza</a></li><li><a href="contact.html">Suite 200</a></li><li><a href="contact.html">Las Vegas, NV 89135</a></li><li><a href="contact.html">(702) 555-0142</a></li><li><a href="contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · Solo practice</span>
+    <span class="tagline">Every woman, every season.</span>
+    <span>Privacy · Accessibility · Patient rights</span>
+  </div>
+</footer>
+
+<script>
+  // simple selection toggles
+  document.querySelectorAll('.choice-grid').forEach(grid => {
+    grid.addEventListener('click', e => {
+      const t = e.target.closest('.choice');
+      if (!t) return;
+      grid.querySelectorAll('.choice').forEach(c => c.classList.remove('sel'));
+      t.classList.add('sel');
+    });
+  });
+  document.querySelector('.time-grid')?.addEventListener('click', e => {
+    const t = e.target.closest('.day');
+    if (!t || t.classList.contains('off')) return;
+    document.querySelectorAll('.time-grid .day').forEach(d => d.classList.remove('sel'));
+    t.classList.add('sel');
+  });
+  document.querySelector('.slots')?.addEventListener('click', e => {
+    const t = e.target.closest('.slot');
+    if (!t || t.classList.contains('off')) return;
+    document.querySelectorAll('.slot').forEach(s => s.classList.remove('sel'));
+    t.classList.add('sel');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Providence OBGYN — Las Vegas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
+<style>
+  /* Hero */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    min-height: 720px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-left {
+    padding: 88px 64px 64px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+  }
+  .hero-left::before {
+    content: ""; position: absolute;
+    top: 40px; bottom: 40px; right: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rule-2) 20%, var(--rule-2) 80%, transparent);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 5.2vw, 78px);
+    line-height: 1.0;
+    letter-spacing: -0.022em;
+    margin: 24px 0 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--wine); }
+  .hero .lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 500px;
+    margin: 0 0 36px;
+  }
+  .hero-meta {
+    display: flex; gap: 32px; margin-top: 44px;
+    padding-top: 28px; border-top: 1px solid var(--rule);
+  }
+  .hero-meta .item { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); }
+  .hero-meta .item strong { display: block; font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; color: var(--ink); letter-spacing: 0; text-transform: none; font-weight: 400; margin-top: 4px; }
+
+  .hero-right {
+    background: var(--paper-2);
+    padding: 56px;
+    position: relative;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-right::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 85% 15%, rgba(86,19,33,0.06), transparent 55%),
+      radial-gradient(circle at 15% 90%, rgba(58,58,58,0.05), transparent 50%);
+    pointer-events: none;
+  }
+
+  .booking {
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+    padding: 36px 34px 30px;
+    position: relative; z-index: 2;
+    box-shadow: 0 30px 60px -30px rgba(62,13,24,0.35), 0 2px 0 var(--paper-3);
+  }
+  .booking::before {
+    content: ""; position: absolute;
+    top: -6px; left: -6px; right: -6px; bottom: -6px;
+    border: 1px solid var(--rule);
+    pointer-events: none; z-index: -1;
+  }
+  .booking h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    margin: 0 0 4px;
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .booking h3 em { font-style: italic; color: var(--wine); font-size: 18px; }
+  .booking .sub { font-size: 13px; color: var(--ink-light); margin: 0 0 22px; }
+  .field-group { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .field { border: 1px solid var(--rule-2); padding: 10px 12px; background: var(--paper); transition: border-color .15s; }
+  .field:focus-within { border-color: var(--wine); }
+  .field .lab { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--wine); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .field input, .field select, .field textarea { width: 100%; border: none; outline: none; background: transparent; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); padding: 0; }
+  .field input::placeholder { color: var(--ink-light); }
+  .field.select-wrap { position: relative; }
+  .field.select-wrap::after {
+    content: "▾"; position: absolute; right: 14px; top: 50%; transform: translateY(-10%);
+    font-size: 12px; color: var(--wine); pointer-events: none;
+  }
+  .booking-submit { margin-top: 18px; display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .booking-submit .finesse { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--ink-light); }
+  .trust-row { display: flex; gap: 18px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule); justify-content: space-between; flex-wrap: wrap; }
+  .trust { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-soft); }
+
+  /* Services */
+  section.services { padding: 120px 64px; border-bottom: 1px solid var(--rule); }
+  .service-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+  }
+  .service {
+    padding: 36px 32px 40px;
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    background: var(--paper);
+    transition: background .2s;
+  }
+  .service:hover { background: var(--paper-2); }
+  .service .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--wine); letter-spacing: 0.18em; }
+  .service h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 28px; letter-spacing: -0.01em; margin: 14px 0 10px; }
+  .service h4 em { font-style: italic; color: var(--wine); }
+  .service p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.55; max-width: 330px; }
+  .service .link { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--wine); text-transform: uppercase; }
+
+  /* Dr Symone band */
+  section.dr-band { display: grid; grid-template-columns: 1fr 1.2fr; border-bottom: 1px solid var(--rule); }
+  .dr-img { position: relative; background: var(--paper-2); min-height: 620px; }
+  .dr-float {
+    position: absolute; right: -48px; bottom: 56px;
+    background: var(--paper); padding: 24px 26px;
+    width: 260px; border: 1px solid var(--rule-2); z-index: 3;
+    box-shadow: 0 20px 40px -20px rgba(62,13,24,0.35);
+  }
+  .dr-float .sig { font-family: 'Fraunces', serif; font-style: italic; font-size: 36px; color: var(--wine); line-height: 1; margin: 0; }
+  .dr-float .role { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; margin-top: 6px; }
+  .dr-float .stars { color: var(--gold); margin-top: 12px; font-size: 14px; letter-spacing: 3px; }
+  .dr-text { padding: 120px 80px 120px 100px; display: flex; flex-direction: column; justify-content: center; }
+  .dr-text h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(36px, 3.8vw, 52px); line-height: 1.1; letter-spacing: -0.02em; margin: 16px 0 20px; max-width: 520px; }
+  .dr-text h2 em { font-style: italic; color: var(--wine); }
+  .dr-text p { font-size: 16px; color: var(--ink-soft); margin: 0 0 14px; max-width: 500px; line-height: 1.65; }
+  .dr-pull {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; line-height: 1.35;
+    color: var(--ink); padding: 20px 0 20px 26px;
+    border-left: 2px solid var(--gold); margin: 28px 0; max-width: 460px;
+  }
+  .dr-ctas { display: flex; gap: 12px; margin-top: 18px; }
+
+  /* Values (wine band) */
+  section.values {
+    padding: 110px 64px;
+    background: var(--wine-deep);
+    color: var(--paper);
+    position: relative; overflow: hidden;
+  }
+  section.values::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 90% 10%, rgba(194,162,90,0.14), transparent 45%),
+      radial-gradient(circle at 5% 95%, rgba(194,162,90,0.08), transparent 50%);
+    pointer-events: none;
+  }
+  section.values .eyebrow { color: #c2a25a; }
+  section.values .eyebrow::before { background: #c2a25a; }
+  .values-head { text-align: center; max-width: 780px; margin: 0 auto 80px; position: relative; }
+  .values-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(40px, 4.8vw, 64px); line-height: 1.1;
+    letter-spacing: -0.02em; margin: 18px 0 0; color: var(--paper);
+  }
+  .values-head h2 em { font-style: italic; color: #c2a25a; }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; max-width: 1100px; margin: 0 auto; position: relative; }
+  .val { padding: 0 8px; text-align: center; }
+  .val .roman {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 56px;
+    color: #c2a25a; line-height: 1; display: inline-block;
+    padding-bottom: 16px; border-bottom: 1px solid rgba(194,162,90,0.4);
+    margin-bottom: 24px; min-width: 60px;
+  }
+  .val h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 26px; letter-spacing: 0.02em; margin: 0 0 14px; color: var(--paper); }
+  .val p { font-size: 14px; color: rgba(244,239,230,0.75); max-width: 280px; margin: 0 auto; line-height: 1.65; }
+
+  /* Visit / map */
+  section.visit { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); min-height: 540px; }
+  .visit-info { padding: 96px 64px; background: var(--paper-2); display: flex; flex-direction: column; justify-content: center; }
+  .visit-info h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(40px, 4.4vw, 56px); line-height: 1.05; letter-spacing: -0.02em; margin: 16px 0 30px; }
+  .visit-info h2 em { font-style: italic; color: var(--wine); }
+  .visit-rows { display: grid; grid-template-columns: 1fr; gap: 0; margin-bottom: 32px; max-width: 520px; }
+  .visit-row { padding: 18px 0; border-bottom: 1px solid var(--rule-2); display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 24px; }
+  .visit-row .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--wine); text-transform: uppercase; }
+  .visit-row .v { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; color: var(--ink); }
+  .visit-row .v small { font-family: 'Inter', sans-serif; font-style: normal; font-size: 13px; color: var(--ink-light); display: block; margin-top: 2px; }
+  .visit-actions { display: flex; gap: 10px; margin-top: 8px; }
+
+  .visit-map { position: relative; overflow: hidden; }
+  .visit-map .map-bg { position: absolute; inset: 0; background: linear-gradient(180deg, #e8dfcb 0%, #d8cdb3 100%); }
+  .visit-map .roads {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, transparent 22%, rgba(86,19,33,0.18) 22%, rgba(86,19,33,0.18) 22.3%, transparent 22.3%),
+      linear-gradient(180deg, transparent 55%, rgba(28,25,23,0.12) 55%, rgba(28,25,23,0.12) 55.3%, transparent 55.3%),
+      linear-gradient(75deg, transparent 38%, rgba(28,25,23,0.08) 38%, rgba(28,25,23,0.08) 38.3%, transparent 38.3%),
+      linear-gradient(160deg, transparent 65%, rgba(28,25,23,0.08) 65%, rgba(28,25,23,0.08) 65.3%, transparent 65.3%),
+      repeating-linear-gradient(45deg, transparent 0 40px, rgba(58,58,58,0.04) 40px 42px);
+  }
+  .map-pin { position: absolute; left: 58%; top: 46%; width: 28px; height: 28px; transform: translate(-50%, -100%); }
+  .map-pin .drop { width: 28px; height: 28px; background: var(--wine); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid var(--paper); box-shadow: 0 8px 16px -4px rgba(62,13,24,0.45); position: relative; }
+  .map-pin .drop::after { content: ""; position: absolute; inset: 6px; background: var(--paper); border-radius: 50%; }
+  .map-pin-label {
+    position: absolute; left: 58%; top: 46%;
+    transform: translate(-50%, calc(-100% - 20px));
+    background: var(--paper); border: 1px solid var(--rule-2);
+    padding: 8px 14px; font-family: 'Fraunces', serif;
+    font-style: italic; font-size: 14px; white-space: nowrap; color: var(--wine);
+    box-shadow: 0 8px 20px -8px rgba(0,0,0,0.15);
+  }
+  .map-pin-label::after {
+    content: ""; position: absolute; bottom: -5px; left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px; height: 8px; background: var(--paper);
+    border-right: 1px solid var(--rule-2); border-bottom: 1px solid var(--rule-2);
+  }
+  .map-scale { position: absolute; bottom: 22px; left: 22px; background: var(--paper); border: 1px solid var(--rule-2); padding: 8px 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-light); text-transform: uppercase; }
+
+  @media (max-width: 1100px) {
+    .hero, section.dr-band, section.visit { grid-template-columns: 1fr; }
+    .hero-left, .dr-text, .visit-info { padding: 64px 40px; }
+    .hero-left::before { display: none; }
+    .hero-right { padding: 40px; }
+    .dr-img { min-height: 460px; }
+    .dr-float { right: 24px; bottom: 24px; }
+    .service-grid { grid-template-columns: repeat(2, 1fr); }
+    .values-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 620px) {
+    .hero-left, section.services, .hero-right, .dr-text, .visit-info, section.values { padding-left: 24px; padding-right: 24px; }
+    .service-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+
+<header class="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="resources.html">Resources</a>
+    <a href="portal.html">Patient Portal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="hero" id="book">
+  <div class="hero-left">
+    <span class="eyebrow">A solo OBGYN practice · Summerlin</span>
+    <h1>Exceptional care, <em>right here</em><br>in Las&nbsp;Vegas.</h1>
+    <p class="lede">Providence is built on one idea — the best care begins with being truly known by your doctor. Unhurried visits, full-spectrum OBGYN, one familiar face through every season.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="about.html" class="btn">Meet Dr. Symone <span class="arrow">→</span></a>
+      <a href="services.html" class="btn ghost">Our services</a>
+    </div>
+    <div class="hero-meta">
+      <div class="item">Experience<strong>20+ years</strong></div>
+      <div class="item">Practice<strong>Solo · intimate</strong></div>
+      <div class="item">Location<strong>Summerlin, NV</strong></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <form class="booking" action="book.html">
+      <h3>Request a visit <em>— within one business day</em></h3>
+      <p class="sub">Tell us a little about your visit and preferred timing.</p>
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field"><span class="lab">First name</span><input type="text" placeholder="Your first name" /></div>
+          <div class="field"><span class="lab">Last name</span><input type="text" placeholder="Your last name" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><span class="lab">Phone</span><input type="tel" placeholder="(702) ·· — ··" /></div>
+          <div class="field"><span class="lab">Email</span><input type="email" placeholder="you@example.com" /></div>
+        </div>
+        <div class="field select-wrap"><span class="lab">Visit type</span><select><option>Well-woman annual</option><option>Prenatal · first visit</option><option>Problem visit / concern</option><option>Teen first visit</option><option>Menopause consultation</option><option>Not sure yet — help me choose</option></select></div>
+        <div class="field select-wrap"><span class="lab">Preferred timing</span><select><option>Within 2 weeks</option><option>Within this month</option><option>Next month</option><option>I'm flexible</option></select></div>
+      </div>
+      <div class="booking-submit">
+        <span class="finesse">We respond by phone — no spam, ever.</span>
+        <button class="btn primary" type="button" onclick="location.href='book.html'">Request appointment <span class="arrow">→</span></button>
+      </div>
+      <div class="trust-row">
+        <div class="trust"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1l1.5 4.5H13l-3.5 2.8L11 13 7 10.2 3 13l1.5-4.7L1 5.5h4.5L7 1z" fill="#3a3a3a" stroke="#3a3a3a" stroke-linejoin="round"/></svg>20+ yrs experience</div>
+        <div class="trust"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#561321" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Most insurance accepted</div>
+        <div class="trust"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#561321" stroke-width="1.3"/><path d="M7 4v3.2l2 1.3" stroke="#561321" stroke-width="1.3" stroke-linecap="round"/></svg>Same-day slots</div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Full-spectrum care</span>
+      <h2>Every season of a woman's life, <em>under one&nbsp;roof.</em></h2>
+    </div>
+    <p class="aside">From a first period to the last postpartum visit, Providence is designed so you're never passed between providers. One doctor. One story. Kept together.</p>
+  </div>
+  <div class="service-grid">
+    <a href="services.html" class="service"><span class="num">01 — Obstetrics</span><h4>Prenatal &amp; <em>delivery</em></h4><p>Unhurried prenatal visits, in-office ultrasound, and delivery planning at our Las Vegas partner hospital.</p><span class="link">Learn more →</span></a>
+    <a href="services.html" class="service"><span class="num">02 — Annual</span><h4>Well-woman exams</h4><p>Annual exams, Pap screening, breast exam, and the ordinary visits that matter most over a lifetime.</p><span class="link">Learn more →</span></a>
+    <a href="services.html" class="service"><span class="num">03 — Fertility</span><h4>Fertility support</h4><p>Initial workups, cycle guidance, and steady support through the waiting. Referrals coordinated when needed.</p><span class="link">Learn more →</span></a>
+    <a href="services.html" class="service"><span class="num">04 — Midlife</span><h4>Menopause <em>care</em></h4><p>Evidence-based hormone counseling for perimenopause and beyond — bone, sleep, mood, libido, all of it.</p><span class="link">Learn more →</span></a>
+    <a href="services.html" class="service"><span class="num">05 — Surgical</span><h4>Gyn surgery</h4><p>Minimally invasive laparoscopic and hysteroscopic procedures, performed at partnering hospitals.</p><span class="link">Learn more →</span></a>
+    <a href="services.html" class="service"><span class="num">06 — Teens</span><h4>Adolescent gyn</h4><p>A gentle, age-appropriate first OBGYN visit — parent-included when welcomed, privacy respected always.</p><span class="link">Learn more →</span></a>
+  </div>
+</section>
+
+<section class="dr-band">
+  <div class="dr-img">
+    <div class="placeholder"><div class="tag"><strong>Portrait · Dr. Symone</strong>Editorial · warm daylight<br>shoulders-up · 3:4 frame</div></div>
+    <div class="dr-float">
+      <div class="sig">Dr. Symone</div>
+      <div class="role">Founder · Board-certified OBGYN</div>
+      <div class="stars">★ ★ ★ ★ ★</div>
+    </div>
+  </div>
+  <div class="dr-text">
+    <span class="eyebrow">Meet Dr. Symone</span>
+    <h2>A doctor who <em>listens first,</em> and practices second.</h2>
+    <p>Providence is a solo practice — which means every visit is with Dr. Symone herself. No rotating providers, no hurry, no forgetting your story between appointments.</p>
+    <p>Twenty years of OBGYN experience in Las Vegas, brought together at one intimate office in Summerlin — designed around unhurried time, warm conversation, and evidence-based medicine.</p>
+    <div class="dr-pull">"The ordinary visits matter most. That's where trust gets built — quietly, over years."</div>
+    <div class="dr-ctas">
+      <a href="about.html" class="btn primary">Read her story <span class="arrow">→</span></a>
+      <a href="about.html" class="btn">Credentials</a>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="values-head">
+    <span class="eyebrow">What we stand for</span>
+    <h2>The quiet things that <em>shape every visit.</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="val"><div class="roman">i.</div><h4>Compassion</h4><p>Every woman is met without judgment, in every season of life. We listen for longer than feels efficient — because that's where good medicine begins.</p></div>
+    <div class="val"><div class="roman">ii.</div><h4>Dignity</h4><p>The exam room should feel like a respected conversation, not a transaction. Our rhythms, language, and pacing all reflect that.</p></div>
+    <div class="val"><div class="roman">iii.</div><h4>Stewardship</h4><p>We treat our work as a calling — to care well for bodies, stories, and families entrusted to us, for as long as they'll let us.</p></div>
+  </div>
+</section>
+
+<section class="quote">
+  <span class="mark">"</span>
+  <p>Care should feel like coming home to someone who remembers your name — and <em>actually has time</em> to ask how you are.</p>
+  <span class="attrib">The practice's heart</span>
+</section>
+
+<section class="visit">
+  <div class="visit-info">
+    <span class="eyebrow">Come see us</span>
+    <h2>One office, <em>easy to find.</em></h2>
+    <div class="visit-rows">
+      <div class="visit-row"><span class="k">Address</span><span class="v">Summerlin Medical Plaza<small>Suite 200 · 10001 Example Way, Las Vegas NV 89135</small></span></div>
+      <div class="visit-row"><span class="k">Hours</span><span class="v">Mon–Thu 8a–5p<small>Friday 8a–12p · closed weekends</small></span></div>
+      <div class="visit-row"><span class="k">Phone</span><span class="v">(702) 555-0142<small>After-hours line for existing patients</small></span></div>
+      <div class="visit-row"><span class="k">Parking</span><span class="v">Free · on-site<small>Street-level, adjacent to the entrance</small></span></div>
+    </div>
+    <div class="visit-actions">
+      <a href="contact.html" class="btn primary">Get directions <span class="arrow">→</span></a>
+      <a href="contact.html" class="btn">Call the office</a>
+    </div>
+  </div>
+  <div class="visit-map">
+    <div class="map-bg"></div>
+    <div class="roads"></div>
+    <div class="map-pin-label">Providence OBGYN</div>
+    <div class="map-pin"><div class="drop"></div></div>
+    <div class="map-scale">Summerlin · NV</div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Now welcoming new patients</span>
+  <h2>When you're ready, <em>we'll be here.</em></h2>
+  <p class="lede">Most new-patient visits booked within two weeks. Call, message, or request online — whichever feels easier.</p>
+  <div class="ctas">
+    <a href="book.html" class="btn primary">Request a visit <span class="arrow">→</span></a>
+    <a href="contact.html" class="btn gold">Call (702) 555-0142</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="services.html">Prenatal &amp; obstetrics</a></li><li><a href="services.html">Well-woman exams</a></li><li><a href="services.html">Fertility support</a></li><li><a href="services.html">Menopause care</a></li><li><a href="services.html">Gyn surgery</a></li><li><a href="services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="about.html">About Dr. Symone</a></li><li><a href="about.html">Our values</a></li><li><a href="book.html">New patient info</a></li><li><a href="resources.html">Pregnancy resources</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="contact.html">Summerlin Medical Plaza</a></li><li><a href="contact.html">Suite 200</a></li><li><a href="contact.html">Las Vegas, NV 89135</a></li><li><a href="contact.html">(702) 555-0142</a></li><li><a href="contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · Solo practice</span>
+    <span class="tagline">Every woman, every season.</span>
+    <span>Privacy · Accessibility · Patient rights</span>
+  </div>
+</footer>
+</body>
+</html>

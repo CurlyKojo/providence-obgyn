@@ -1,0 +1,61 @@
+# Providence OBGYN — Website
+
+Static site for Providence OBGYN, Dr. Symone's solo practice in Las Vegas.
+
+## Pages
+
+**Top-level**
+
+- `index.html` — homepage
+- `about.html` — Dr. Symone bio & practice story
+- `services.html` — services offered
+- `resources.html` — patient resources & article index
+- `portal.html` — patient portal overview
+- `book.html` — appointment booking
+- `contact.html` — contact info & location
+- `faq.html` — frequently asked questions
+
+**Articles** (in `articles/`)
+
+- `first-prenatal-visit.html` — your first prenatal visit
+- `first-prenatal-visit-print.html` — print-friendly version of the above
+- `hormone-therapy-2026.html` — hormone therapy update
+- `laparoscopic-prep.html` — preparing for laparoscopic surgery
+- `teen-first-visit.html` — a teen's first OBGYN visit
+- `trying-to-conceive.html` — when to seek fertility help
+- `when-do-i-need-a-pap.html` — Pap smear timing
+
+## Design system
+
+- **Palette** — burgundy (`#561321`), warm ivory paper (`#f4efe6`), charcoal ink
+- **Typography** — Fraunces (display), Cormorant Garamond (body/serif), Inter (UI), JetBrains Mono (eyebrows & meta)
+- **Stylesheet** — `shared.css` defines all tokens as CSS variables on `:root`; every page pulls from one source of truth
+
+## Running locally
+
+No build step. Just serve the project root:
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000/
+```
+
+Or simply double-click `index.html` to open it in a browser.
+
+## Deploying to GitHub Pages
+
+1. Push this repo to GitHub.
+2. In the repo, go to **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **Deploy from a branch**, pick **`main`** and **`/ (root)`**.
+4. Wait ~1 minute. Your site will be live at `https://<your-username>.github.io/<repo-name>/`.
+
+## Implementation notes
+
+- The first-prenatal-visit article page uses a sticky in-page TOC wired to `id` anchors on each `<h2>`, with `scroll-margin-top` so anchor targets clear the sticky nav.
+- Image placeholders (striped burgundy frames) mark spots where real photography/ultrasound imagery should be swapped in before launch.
+- Fonts load from Google Fonts with `preconnect` in place.
+- `partials.html` from the original design bundle is excluded — it was a reference snippet file for the design team, not a shipped page.
+
+## Credits
+
+Design: Claude Design (claude.ai/design) · handoff bundle from `Symone's Medical Practice`.

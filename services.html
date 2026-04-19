@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Resources — Providence OBGYN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
+<style>
+  /* Featured resource */
+  section.featured { padding: 90px 64px; border-bottom: 1px solid var(--rule); }
+  .feat-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+  .feat-img { aspect-ratio: 4/3; position: relative; }
+  .feat-txt .kicker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--wine); text-transform: uppercase; }
+  .feat-txt h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(40px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -0.02em; margin: 14px 0 18px; }
+  .feat-txt h2 em { font-style: italic; color: var(--wine); }
+  .feat-meta { display: flex; gap: 24px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--rule); }
+  .feat-meta .m { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; }
+  .feat-meta .m strong { display: block; font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: var(--ink); letter-spacing: 0; text-transform: none; font-weight: 400; margin-top: 4px; }
+
+  /* Filter bar */
+  .filters { background: var(--paper-2); border-bottom: 1px solid var(--rule); padding: 22px 64px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .filters .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-light); text-transform: uppercase; }
+  .chip-filter { padding: 8px 14px; border: 1px solid var(--rule-2); background: var(--paper); font-size: 13px; color: var(--ink-soft); cursor: pointer; transition: all .15s; font-family: 'Inter', sans-serif; }
+  .chip-filter:hover { border-color: var(--ink); }
+  .chip-filter.active { background: var(--wine); color: var(--paper); border-color: var(--wine); }
+
+  /* Article grid */
+  section.articles { padding: 80px 64px 100px; border-bottom: 1px solid var(--rule); }
+  .a-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .card { background: var(--paper); border: 1px solid var(--rule-2); transition: transform .2s, box-shadow .2s; display: flex; flex-direction: column; cursor: pointer; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(62,13,24,0.25); }
+  .card .img-frame { aspect-ratio: 4/3; }
+  .card .body { padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .card .tag-row { display: flex; gap: 10px; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; }
+  .card .tag-row .cat { color: var(--wine); }
+  .card h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; margin: 0; }
+  .card h4 em { font-style: italic; color: var(--wine); }
+  .card { text-decoration: none; color: inherit; }
+  .card p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+  .card .foot { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); }
+  .card .foot .read { color: var(--wine); }
+
+  /* Download band */
+  section.downloads { padding: 110px 64px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+  .dl-grid { max-width: 1100px; margin: 48px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .dl-card { background: var(--paper); border: 1px solid var(--rule-2); padding: 28px 26px 26px; display: flex; flex-direction: column; gap: 12px; position: relative; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+  .dl-card:hover { border-color: var(--wine); transform: translateY(-2px); }
+  .dl-card::before { content: ""; position: absolute; top: 0; right: 0; width: 0; height: 0; border-style: solid; border-width: 0 28px 28px 0; border-color: transparent var(--paper-2) transparent transparent; }
+  .dl-card .type { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: var(--wine); text-transform: uppercase; }
+  .dl-card h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; margin: 4px 0 6px; letter-spacing: -0.01em; }
+  .dl-card h4 em { font-style: italic; color: var(--wine); }
+  .dl-card p { font-size: 13px; color: var(--ink-soft); margin: 0 0 10px; line-height: 1.55; }
+  .dl-card .meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; padding-top: 12px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+  .dl-card .meta .dl-link { color: var(--wine); }
+
+  /* Pregnancy guide timeline */
+  section.timeline { padding: 120px 64px; border-bottom: 1px solid var(--rule); }
+  .tl-inner { max-width: 1100px; margin: 0 auto; }
+  .tl-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; margin-top: 56px; border-left: 1px solid var(--ink); border-top: 1px solid var(--ink); }
+  .tl-col { padding: 32px 30px 36px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--paper); position: relative; }
+  .tl-col.tri-2 { background: var(--paper-2); }
+  .tl-col.tri-3 { background: var(--wine-deep); color: var(--paper); }
+  .tl-col .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--wine); }
+  .tl-col.tri-3 .label { color: #c2a25a; }
+  .tl-col h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 30px; margin: 10px 0 4px; letter-spacing: -0.01em; }
+  .tl-col h3 em { font-style: italic; }
+  .tl-col.tri-3 h3 em { color: #c2a25a; }
+  .tl-col.tri-1 h3 em, .tl-col.tri-2 h3 em { color: var(--wine); }
+  .tl-col .wks { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--ink-light); margin-bottom: 20px; }
+  .tl-col.tri-3 .wks { color: rgba(244,239,230,0.7); }
+  .tl-col ul { list-style: none; padding: 0; margin: 0; }
+  .tl-col li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+  .tl-col.tri-3 li { border-color: rgba(244,239,230,0.15); color: rgba(244,239,230,0.85); }
+  .tl-col li strong { display: block; color: var(--ink); font-family: 'Fraunces', serif; font-weight: 500; font-size: 14px; margin-bottom: 2px; }
+  .tl-col.tri-3 li strong { color: var(--paper); }
+
+  @media (max-width: 1100px) {
+    .feat-inner { grid-template-columns: 1fr; }
+    .a-grid { grid-template-columns: 1fr 1fr; }
+    .dl-grid, .tl-body { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    section.featured, .filters, section.articles, section.downloads, section.timeline { padding-left: 24px; padding-right: 24px; }
+    .a-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+<header class="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="resources.html" class="active">Resources</a>
+    <a href="portal.html">Patient Portal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="inner">
+    <div>
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>Resources</div>
+      <span class="eyebrow" style="margin-top:12px">Guides, downloads &amp; reading</span>
+      <h1>Things worth <em>knowing,</em><br>written with you in mind.</h1>
+    </div>
+    <p class="lede">Reading, printables, and visit prep — written by Dr. Symone, reviewed annually. Short enough to be useful, long enough to actually help.</p>
+  </div>
+</section>
+
+<section class="featured">
+  <div class="feat-inner">
+    <div class="feat-img">
+      <div class="img-frame" style="height:100%"><div class="placeholder"><div class="tag"><strong>Editorial illustration</strong>Pregnancy guide cover<br>warm ivory &amp; wine</div></div></div>
+    </div>
+    <div class="feat-txt">
+      <span class="kicker">◆ Featured guide · 42 pages</span>
+      <h2>The Providence <em>Pregnancy Guide.</em></h2>
+      <p class="lede">A calm, trimester-by-trimester companion to the first nine months — what to expect, what to ask, and what's normal (even when it doesn't feel that way).</p>
+      <div style="display:flex;gap:12px">
+        <a href="#downloads" class="btn primary">Download (PDF) <span class="arrow">→</span></a>
+        <a href="#articles" class="btn">Read online</a>
+      </div>
+      <div class="feat-meta">
+        <div class="m">Written by<strong>Dr. Symone</strong></div>
+        <div class="m">Updated<strong>January 2026</strong></div>
+        <div class="m">Format<strong>PDF · 8.5×11"</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="filters">
+  <span class="lbl">Filter —</span>
+  <span class="chip-filter active">All topics</span>
+  <span class="chip-filter">Pregnancy</span>
+  <span class="chip-filter">Annual care</span>
+  <span class="chip-filter">Fertility</span>
+  <span class="chip-filter">Menopause</span>
+  <span class="chip-filter">Adolescent</span>
+  <span class="chip-filter">Surgery prep</span>
+</div>
+
+<section class="articles" id="articles">
+  <div class="a-grid">
+    <a class="card" href="articles/first-prenatal-visit.html">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Article image</strong>First trimester</div></div></div>
+      <div class="body">
+        <div class="tag-row"><span class="cat">Pregnancy</span>·<span>6 min read</span></div>
+        <h4>Your first prenatal visit: <em>what actually happens.</em></h4>
+        <p>A gentle walk-through of the 60-minute first visit — labs, ultrasound, and the conversation most books skip.</p>
+        <div class="foot"><span>Feb 2026</span><span class="read">Read →</span></div>
+      </div>
+    </a>
+    <a class="card" href="articles/hormone-therapy-2026.html">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Article image</strong>Menopause · sleep</div></div></div>
+      <div class="body">
+        <div class="tag-row"><span class="cat">Menopause</span>·<span>9 min read</span></div>
+        <h4>Hormone therapy in 2026: <em>the current evidence.</em></h4>
+        <p>A plain-language summary of where the guidelines actually stand on HRT — and how we think about it for our patients.</p>
+        <div class="foot"><span>Jan 2026</span><span class="read">Read →</span></div>
+      </div>
+    </a>
+    <a class="card" href="articles/when-do-i-need-a-pap.html">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Article image</strong>Annual exam</div></div></div>
+      <div class="body">
+        <div class="tag-row"><span class="cat">Annual care</span>·<span>4 min read</span></div>
+        <h4>When do I <em>actually</em> need a Pap?</h4>
+        <p>The cadence has changed. Here's how ACOG thinks about it now, and what we recommend for most patients.</p>
+        <div class="foot"><span>Dec 2025</span><span class="read">Read →</span></div>
+      </div>
+    </a>
+    <a class="card" href="articles/teen-first-visit.html">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Article image</strong>Teen care</div></div></div>
+      <div class="body">
+        <div class="tag-row"><span class="cat">Adolescent</span>·<span>5 min read</span></div>
+        <h4>Her first OBGYN visit: <em>a parent's guide.</em></h4>
+        <p>What to expect (and what <em>not</em> to expect) at a teen's first gynecology appointment — most involve no exam at all.</p>
+        <div class="foot"><span>Nov 2025</span><span class="read">Read →</span></div>
+      </div>
+    </a>
+    <a class="card" href="articles/trying-to-conceive.html">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Article image</strong>Fertility</div></div></div>
+      <div class="body">
+        <div class="tag-row"><span class="cat">Fertility</span>·<span>8 min read</span></div>
+        <h4>Trying to conceive: <em>when to seek help.</em></h4>
+        <p>The usual twelve-month rule isn't a rule for everyone. Here's how age, cycle, and history change the answer.</p>
+        <div class="foot"><span>Oct 2025</span><span class="read">Read →</span></div>
+      </div>
+    </a>
+    <a class="card" href="articles/laparoscopic-prep.html">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Article image</strong>Surgery prep</div></div></div>
+      <div class="body">
+        <div class="tag-row"><span class="cat">Surgery prep</span>·<span>7 min read</span></div>
+        <h4>Preparing for a laparoscopic <em>procedure.</em></h4>
+        <p>Step-by-step: the week before, the morning of, and the first 72 hours at home. Written from our surgical patients' questions.</p>
+        <div class="foot"><span>Sep 2025</span><span class="read">Read →</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="timeline">
+  <div class="tl-inner">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">At a glance</span>
+        <h2>Pregnancy, <em>trimester by trimester.</em></h2>
+      </div>
+      <p class="aside">A quick visual of the visit cadence, tests, and conversations we'll walk through together. The full guide goes deeper — this is your map.</p>
+    </div>
+    <div class="tl-body">
+      <div class="tl-col tri-1">
+        <div class="label">First trimester</div>
+        <h3>Weeks 1–13 <em>· steady beginnings</em></h3>
+        <div class="wks">Visit cadence: every 4 weeks</div>
+        <ul>
+          <li><strong>Week 8 · First visit</strong>Full intake, early ultrasound, dating confirmation.</li>
+          <li><strong>Week 10 · NIPT screening</strong>Cell-free DNA if elected — reviewed together.</li>
+          <li><strong>Week 12 · Nuchal scan</strong>Optional, and we talk through the choice.</li>
+          <li><strong>Throughout</strong>Nausea, fatigue, early anxieties — welcome conversations.</li>
+        </ul>
+      </div>
+      <div class="tl-col tri-2">
+        <div class="label">Second trimester</div>
+        <h3>Weeks 14–27 <em>· the gentle middle</em></h3>
+        <div class="wks">Visit cadence: every 4 weeks</div>
+        <ul>
+          <li><strong>Week 20 · Anatomy scan</strong>Detailed ultrasound · gender if you want to know.</li>
+          <li><strong>Week 24 · Fetal movement</strong>Kick-counting begins; we talk about how.</li>
+          <li><strong>Week 26 · Glucose screen</strong>Gestational diabetes testing.</li>
+          <li><strong>Throughout</strong>Nutrition, travel, sleep positions, birth plan drafting.</li>
+        </ul>
+      </div>
+      <div class="tl-col tri-3">
+        <div class="label">Third trimester</div>
+        <h3>Weeks 28–40 <em>· gathering close</em></h3>
+        <div class="wks">Visit cadence: every 2 weeks, then weekly</div>
+        <ul>
+          <li><strong>Week 28 · Tdap &amp; RhoGAM</strong>Vaccinations and Rh-negative care.</li>
+          <li><strong>Week 36 · GBS swab</strong>Group B strep screening.</li>
+          <li><strong>Weeks 36+ · Birth plan</strong>Final review · hospital tour · bag list.</li>
+          <li><strong>Week 40 · We're there</strong>Delivery at Summerlin Hospital with Dr. Symone.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="downloads" id="downloads">
+  <div class="section-head" style="max-width:1100px;margin:0 auto 0">
+    <div>
+      <span class="eyebrow">Printable downloads</span>
+      <h2>Things to <em>take home.</em></h2>
+    </div>
+    <p class="aside">Each is a single-page PDF, designed to print cleanly and live on your fridge or in your pregnancy folder.</p>
+  </div>
+  <div class="dl-grid">
+    <a class="dl-card" href="#download"><span class="type">PDF · 2 pages</span><h4>New patient <em>intake</em></h4><p>Complete before your first visit to help us make the most of the time together.</p><div class="meta"><span>v. 2026.1</span><span class="dl-link">Download ↓</span></div></a>
+    <a class="dl-card" href="#download"><span class="type">PDF · 1 page</span><h4>Prenatal <em>vitamin guide</em></h4><p>The brands we recommend, what to actually look for, and what's marketing.</p><div class="meta"><span>v. 2025.3</span><span class="dl-link">Download ↓</span></div></a>
+    <a class="dl-card" href="#download"><span class="type">PDF · 1 page</span><h4>Hospital <em>bag list</em></h4><p>What to pack (and what to leave home) for your delivery at Summerlin Hospital.</p><div class="meta"><span>v. 2026.1</span><span class="dl-link">Download ↓</span></div></a>
+    <a class="dl-card" href="#download"><span class="type">PDF · 4 pages</span><h4>Birth plan <em>worksheet</em></h4><p>Guided prompts to think through preferences — bring it to your 36-week visit.</p><div class="meta"><span>v. 2025.4</span><span class="dl-link">Download ↓</span></div></a>
+    <a class="dl-card" href="#download"><span class="type">PDF · 2 pages</span><h4>Menopause <em>symptom tracker</em></h4><p>Daily log to bring to your consultation — sleep, mood, cycles, everything.</p><div class="meta"><span>v. 2025.2</span><span class="dl-link">Download ↓</span></div></a>
+    <a class="dl-card" href="#download"><span class="type">PDF · 1 page</span><h4>Postpartum <em>recovery</em></h4><p>The first six weeks — what's normal, what isn't, when to call.</p><div class="meta"><span>v. 2026.1</span><span class="dl-link">Download ↓</span></div></a>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Still have questions?</span>
+  <h2>Reading only goes <em>so far.</em></h2>
+  <p class="lede">Every question is worth asking in person — where we can actually talk it through. Request a visit, and we'll make room.</p>
+  <div class="ctas">
+    <a href="book.html" class="btn primary">Request a visit <span class="arrow">→</span></a>
+    <a href="faq.html" class="btn gold">Read FAQ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="services.html">Prenatal &amp; obstetrics</a></li><li><a href="services.html">Well-woman exams</a></li><li><a href="services.html">Fertility support</a></li><li><a href="services.html">Menopause care</a></li><li><a href="services.html">Gyn surgery</a></li><li><a href="services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="about.html">About Dr. Symone</a></li><li><a href="about.html">Our values</a></li><li><a href="book.html">New patient info</a></li><li><a href="resources.html">Pregnancy resources</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="contact.html">Summerlin Medical Plaza</a></li><li><a href="contact.html">Suite 200</a></li><li><a href="contact.html">Las Vegas, NV 89135</a></li><li><a href="contact.html">(702) 555-0142</a></li><li><a href="contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · Solo practice</span>
+    <span class="tagline">Every woman, every season.</span>
+    <span>Privacy · Accessibility · Patient rights</span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.chip-filter').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.chip-filter').forEach(x => x.classList.remove('active'));
+  c.classList.add('active');
+}));
+</script>
+</body>
+</html>

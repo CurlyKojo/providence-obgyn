@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ — Providence OBGYN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
+<style>
+  .faq-layout { display: grid; grid-template-columns: 280px 1fr; gap: 72px; max-width: 1200px; margin: 0 auto; padding: 96px 64px 120px; }
+  .faq-nav { position: sticky; top: 120px; align-self: start; }
+  .faq-nav h5 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-light); text-transform: uppercase; margin: 0 0 18px; }
+  .faq-nav ul { list-style: none; padding: 0; margin: 0; border-left: 1px solid var(--rule); }
+  .faq-nav li { padding: 10px 18px; font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); cursor: pointer; border-left: 2px solid transparent; margin-left: -1px; transition: all .15s; }
+  .faq-nav li:hover { color: var(--wine); }
+  .faq-nav li.active { color: var(--wine); border-left-color: var(--wine); background: var(--paper-2); }
+
+  .faq-body h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(32px, 3.6vw, 44px); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 14px; }
+  .faq-body h2 em { font-style: italic; color: var(--wine); }
+  .faq-body .sect-sub { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--ink-soft); margin: 0 0 36px; max-width: 560px; }
+  .faq-section { margin-bottom: 80px; }
+
+  details { border-bottom: 1px solid var(--rule); padding: 20px 0; }
+  details[open] { padding-bottom: 28px; }
+  details summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 24px; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; margin: 0; line-height: 1.3; color: var(--ink); }
+  details summary h3 em { font-style: italic; color: var(--wine); }
+  details .icon { width: 28px; height: 28px; border: 1px solid var(--rule-2); display: flex; align-items: center; justify-content: center; color: var(--wine); font-family: 'Fraunces', serif; font-size: 20px; line-height: 1; transition: all .2s; flex-shrink: 0; }
+  details[open] .icon { background: var(--wine); color: var(--paper); border-color: var(--wine); transform: rotate(45deg); }
+  details .answer { margin-top: 18px; font-family: 'Cormorant Garamond', serif; font-size: 19px; line-height: 1.65; color: var(--ink-soft); max-width: 680px; }
+  details .answer p { margin: 0 0 14px; }
+  details .answer p:last-child { margin-bottom: 0; }
+  details .answer strong { font-family: 'Fraunces', serif; font-weight: 500; color: var(--ink); }
+  details .answer a { color: var(--wine); text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 1000px) {
+    .faq-layout { grid-template-columns: 1fr; gap: 32px; padding: 56px 40px 80px; }
+    .faq-nav { position: static; }
+    .faq-nav ul { display: flex; flex-wrap: wrap; border-left: 0; border-top: 1px solid var(--rule); padding-top: 10px; }
+    .faq-nav li { border-left: 0; border-bottom: 2px solid transparent; padding: 8px 14px; }
+    .faq-nav li.active { border-bottom-color: var(--wine); background: transparent; }
+  }
+  @media (max-width: 620px) {
+    .faq-layout { padding-left: 24px; padding-right: 24px; }
+    details summary h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+<header class="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="resources.html">Resources</a>
+    <a href="portal.html">Patient Portal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="inner">
+    <div>
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>FAQ</div>
+      <span class="eyebrow" style="margin-top:12px">Frequently asked</span>
+      <h1>Good questions, <em>answered plainly.</em></h1>
+    </div>
+    <p class="lede">The ones we hear most often — from new patients, long-time patients, and the family members who help them schedule.</p>
+  </div>
+</section>
+
+<div class="faq-layout">
+  <aside class="faq-nav">
+    <h5>Browse by topic</h5>
+    <ul>
+      <li class="active" data-sect="newpatient">New patients</li>
+      <li data-sect="appts">Appointments &amp; visits</li>
+      <li data-sect="pregnancy">Pregnancy &amp; delivery</li>
+      <li data-sect="insurance">Insurance &amp; billing</li>
+      <li data-sect="practice">About the practice</li>
+    </ul>
+  </aside>
+
+  <div class="faq-body">
+
+    <div class="faq-section" id="newpatient">
+      <h2>For <em>new patients.</em></h2>
+      <p class="sect-sub">Welcome. Here's what to expect before you walk in the first time.</p>
+
+      <details open>
+        <summary><h3>Is Providence <em>accepting new patients?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Yes — with a deliberately small panel. Because Providence is a solo practice, we only welcome as many patients as Dr. Symone can truly know. We aim to confirm new-patient visits within two weeks of your request.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>What happens at a <em>first visit?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Every new-patient visit is sixty minutes long and begins <strong>seated</strong>, fully dressed, in our consult room. We go through your history, your questions, and your hopes for care before any exam is offered. When an exam is appropriate, you're walked to a private exam room with warmed linens.</p><p>You'll leave with a written plan and a clear sense of what (if anything) needs following up.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>What should I bring?</h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Your insurance card and a photo ID. If you have them: a list of medications, previous gynecologic records, and the completed new-patient intake form (we email it when your visit is confirmed). That's it.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>How do I get to <em>the office?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>We're in the Summerlin Medical Plaza, Suite 200, with free ground-level parking directly in front. Full directions and a map live on our <a href="contact.html">contact page</a>.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-section" id="appts">
+      <h2>Appointments &amp; <em>visits.</em></h2>
+      <p class="sect-sub">How we schedule, message, and keep your time respected.</p>
+
+      <details>
+        <summary><h3>How long will I wait for an <em>appointment?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>For established patients: most routine concerns are seen within a week. Annuals are booked a few weeks out. For new patients, we typically confirm within two weeks. Urgent concerns are always triaged same-day.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>Will I always see <em>Dr. Symone?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p><strong>Yes.</strong> Every clinical visit at Providence is with Dr. Symone herself. No rotating providers, no mid-pregnancy hand-offs. If she's unavailable (rare — typically illness or family emergency), we reschedule rather than substitute.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>How do I message the office <em>between visits?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Existing patients use our secure <a href="portal.html">patient portal</a> for clinical questions, refill requests, and results. Messages are read by Dr. Symone herself and answered within one business day.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>What about <em>after-hours</em> concerns?</h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Established patients have access to an after-hours line answered by Dr. Symone's on-call coverage. For true emergencies — heavy bleeding, severe pain, any concern about your baby — call 911 or proceed directly to Summerlin Hospital's Labor &amp; Delivery or Emergency Department.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>What if I need to <em>cancel?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Please give us 24 hours when you can. Because our schedule is small by design, a cancelled slot means another patient could have been seen — we appreciate the courtesy, and we extend the same to you.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-section" id="pregnancy">
+      <h2>Pregnancy &amp; <em>delivery.</em></h2>
+      <p class="sect-sub">What obstetric care looks like under one doctor.</p>
+
+      <details>
+        <summary><h3>Where do you <em>deliver?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Dr. Symone delivers at <strong>Summerlin Hospital Medical Center</strong>. She attends her own patients' deliveries whenever possible, including nights and weekends. Backup coverage is arranged with one trusted OBGYN partner for the rare occasion she's unavailable.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>Do you support <em>natural birth? VBAC? Epidurals?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>All of the above. Our birth philosophy is that you know your body — our job is evidence-based guidance and the safest delivery possible. VBACs are welcomed when medically appropriate. Birth plans are drafted together around week 34.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>What about <em>high-risk pregnancies?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Many high-risk pregnancies are safely co-managed between Dr. Symone and a maternal-fetal medicine specialist. She'll coordinate referrals if needed, and — importantly — stay as your primary OBGYN throughout.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>Do you offer <em>in-office ultrasound?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Yes — in every prenatal visit, which means dating scans, heartbeat checks, and reassurance happen with Dr. Symone, not a separate facility. Detailed anatomy scans are performed at a partner imaging center.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-section" id="insurance">
+      <h2>Insurance &amp; <em>billing.</em></h2>
+      <p class="sect-sub">Transparent, plain-language, no surprises.</p>
+
+      <details>
+        <summary><h3>Which <em>plans</em> do you accept?</h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Most major PPO plans: Blue Cross Blue Shield, Aetna, Cigna, Anthem, Tricare, Sierra Health Options, and select United Healthcare plans. The full list is on our <a href="services.html#insurance">services page</a> — and if you don't see yours, call us. We'll verify.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>What if I'm <em>self-pay?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>We offer transparent self-pay rates for visits, procedures, and prenatal packages. Ask our front desk for a full price sheet — no surprises, no bundled extras.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>Do you take <em>Medicaid?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Not at this time. We're working with the state on future network participation — please call for current status.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>How do <em>billing questions</em> work?</h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Our billing is handled in-house, not outsourced. For any question, call our front desk directly — a real person, no phone tree, no ticket number.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-section" id="practice" style="margin-bottom:0">
+      <h2>About <em>the practice.</em></h2>
+      <p class="sect-sub">The quiet questions we hear most often about how Providence runs.</p>
+
+      <details>
+        <summary><h3>Is Providence a <em>faith-based</em> practice?</h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Dr. Symone is a person of personal faith — you'll feel it in the warmth of our office and the name she chose for the practice. But our care is <strong>evidence-based first, always</strong>. Every patient is welcomed exactly as she is, and every clinical recommendation follows modern OBGYN guidelines.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>What does "Providence" <em>mean?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>It's a word Dr. Symone loves — <em>being watched over with care</em>. She chose it because it described both how she wanted her patients to feel, and how she'd been cared for by the doctors who shaped her.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>Can I <em>meet you</em> before becoming a patient?</h3><span class="icon">+</span></summary>
+        <div class="answer"><p>Absolutely. We offer no-cost 15-minute "meet &amp; greet" calls with Dr. Symone for prospective new patients — especially those deciding on a prenatal practice. Request one on our <a href="contact.html">contact page</a>.</p></div>
+      </details>
+
+      <details>
+        <summary><h3>Do you ever <em>close the practice?</em></h3><span class="icon">+</span></summary>
+        <div class="answer"><p>We briefly pause new-patient intake when our panel gets full, to protect the pace of care we've promised existing patients. When that happens, we keep a gentle waitlist.</p></div>
+      </details>
+    </div>
+
+  </div>
+</div>
+
+<section class="final-cta">
+  <span class="eyebrow">Still have a question?</span>
+  <h2>Ask, <em>and we'll answer.</em></h2>
+  <p class="lede">If something's on your mind that isn't covered here, send a note — or call during office hours and someone will pick up.</p>
+  <div class="ctas">
+    <a href="contact.html" class="btn primary">Send a note <span class="arrow">→</span></a>
+    <a href="book.html" class="btn gold">Request a visit</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="services.html">Prenatal &amp; obstetrics</a></li><li><a href="services.html">Well-woman exams</a></li><li><a href="services.html">Fertility support</a></li><li><a href="services.html">Menopause care</a></li><li><a href="services.html">Gyn surgery</a></li><li><a href="services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="about.html">About Dr. Symone</a></li><li><a href="about.html">Our values</a></li><li><a href="book.html">New patient info</a></li><li><a href="resources.html">Pregnancy resources</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="contact.html">Summerlin Medical Plaza</a></li><li><a href="contact.html">Suite 200</a></li><li><a href="contact.html">Las Vegas, NV 89135</a></li><li><a href="contact.html">(702) 555-0142</a></li><li><a href="contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · Solo practice</span>
+    <span class="tagline">Every woman, every season.</span>
+    <span>Privacy · Accessibility · Patient rights</span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-nav li').forEach(li => li.addEventListener('click', () => {
+  document.querySelectorAll('.faq-nav li').forEach(x => x.classList.remove('active'));
+  li.classList.add('active');
+  const t = document.getElementById(li.dataset.sect);
+  if (t) window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'});
+}));
+</script>
+</body>
+</html>

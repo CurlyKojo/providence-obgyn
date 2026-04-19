@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>When do I actually need a Pap? — Providence OBGYN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css?v=2" />
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+
+<header class="nav">
+  <a href="../index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../services.html">Services</a>
+    <a href="../resources.html" class="active">Resources</a>
+    <a href="../portal.html">Patient Portal</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="../book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="art-hero">
+  <div class="crumbs">
+    <a href="../index.html">Home</a><span class="sep">/</span>
+    <a href="../resources.html">Resources</a><span class="sep">/</span>
+    <a href="../resources.html#articles">Reading</a><span class="sep">/</span>
+    When do I actually need a Pap?
+  </div>
+  <span class="cat">Annual care</span>
+  <h1>When do I <em>actually</em> need a Pap?</h1>
+  <p class="dek">The cadence has changed. Here's how ACOG thinks about it now, and what we recommend for most patients.</p>
+  <div class="meta">
+    <span class="byline">By <em>Dr. Symone</em></span>
+    <span class="rule"></span>
+    <span>Dec 2025</span>
+    <span class="rule"></span>
+    <span>4 min read</span>
+  </div>
+</section>
+
+<div class="art-cover img-frame">
+  <div class="placeholder">
+    <div class="tag"><strong>Article cover</strong>Cervical screening · annual care</div>
+  </div>
+</div>
+
+<div class="art-body">
+  <aside class="side-left">
+    <h5>In this piece</h5>
+    <ul>
+      <li class="active">The short answer</li>
+      <li>Ages 21–29</li>
+      <li>Ages 30–65</li>
+      <li>After 65</li>
+      <li>Why the change</li>
+      <li>When to deviate</li>
+    </ul>
+    <h5>Share</h5>
+    <div class="share">
+      <a href="#">Email this →</a>
+      <a href="#">Print version →</a>
+      <a href="#">Save to portal →</a>
+    </div>
+  </aside>
+
+  <article class="art-prose">
+    <p>One of the most common questions I hear — often a little sheepishly, because patients feel they should already know — is how often a Pap is actually needed. The answer has changed several times in the last decade, and honestly, if you're confused, it's because the guidance has genuinely moved. Here is where it stands now.</p>
+
+    <p>Before we get into the numbers: a Pap test is not the same thing as an annual well-woman visit. You may not need a Pap every year, but you do still benefit from an annual visit — for breast exam, contraception, screening conversations, and general check-in. Please don't read <em>"you don't need a Pap this year"</em> as <em>"you don't need to come in."</em></p>
+
+    <h2><span class="num">01</span>The <em>short answer.</em></h2>
+    <p>For most average-risk women with previously normal results, current ACOG and USPSTF guidance looks roughly like this:</p>
+    <ul>
+      <li><strong>Ages 21–29:</strong> Pap test every 3 years. HPV testing is not routinely added.</li>
+      <li><strong>Ages 30–65:</strong> Pap every 3 years, <em>or</em> HPV test every 5 years, <em>or</em> co-testing (Pap + HPV) every 5 years. Any of the three is acceptable.</li>
+      <li><strong>After 65:</strong> Screening may stop, if you've had adequate negative screening in the preceding decade and no history of precancer.</li>
+      <li><strong>After hysterectomy</strong> for benign reasons (no history of precancer or cancer): screening is generally not needed.</li>
+    </ul>
+
+    <h2><span class="num">02</span>Ages <em>21–29.</em></h2>
+    <p>We start Pap screening at 21, regardless of sexual history. Before 21, the immune system typically clears HPV infections on its own, and screening tends to find changes that would have resolved — leading to procedures that can have later consequences for cervical competence in pregnancy.</p>
+    <p>From 21 to 29, we recommend a Pap every three years if results are normal. HPV co-testing is not routinely used in this age group because transient HPV infection is very common and mostly clears without consequence.</p>
+
+    <h2><span class="num">03</span>Ages <em>30–65.</em></h2>
+    <p>At 30, the options widen. We now have three acceptable approaches, and the right one depends partly on patient preference:</p>
+    <ol>
+      <li>Pap alone every 3 years.</li>
+      <li>Primary HPV testing every 5 years.</li>
+      <li>Co-testing (Pap + HPV together) every 5 years.</li>
+    </ol>
+    <p>Primary HPV testing has the strongest evidence base for the longest interval. Co-testing is more reassuring to some patients and is still widely used. In practice, we often default to co-testing every five years in this age group unless there's a reason to screen more often.</p>
+
+    <div class="callout">
+      <span class="label">A common surprise</span>
+      <p><strong>Five-year intervals are not a cost-cutting measure.</strong> They reflect the biology of HPV and cervical cancer: the disease progresses slowly, and more frequent screening finds transient infections that resolve on their own, leading to unnecessary procedures. Less frequent, higher-quality screening is actually better care.</p>
+    </div>
+
+    <h2><span class="num">04</span>After <em>65.</em></h2>
+    <p>We can stop routine screening if you've had:</p>
+    <ul>
+      <li>Three consecutive negative Paps, or two consecutive negative co-tests, within the past ten years.</li>
+      <li>The most recent test in the last five years.</li>
+      <li>No history of cervical precancer or cancer.</li>
+    </ul>
+    <p>If any of these conditions aren't met, we continue screening. And for patients with a history of high-grade precancer, we continue for 25 years after that diagnosis, regardless of age.</p>
+
+    <h2><span class="num">05</span>Why <em>the change.</em></h2>
+    <p>The old guidance — a Pap every year — was built in an era before we understood the role of HPV, before HPV testing existed, and before we had vaccines. We now know:</p>
+    <ol>
+      <li>Almost all cervical cancer is caused by persistent high-risk HPV infection.</li>
+      <li>HPV testing is more sensitive than Pap for detecting the women at risk.</li>
+      <li>Progression from persistent HPV to cancer typically takes ten years or more.</li>
+      <li>Over-screening leads to over-treatment — with real long-term effects including cervical insufficiency in pregnancy.</li>
+    </ol>
+
+    <blockquote>
+      Doing a Pap every year was once thought of as <em>cautious</em>. We now understand it was overcautious, and sometimes harmful. Less — done well — is genuinely more here.
+      <cite>— Dr. Symone</cite>
+    </blockquote>
+
+    <h2><span class="num">06</span>When to <em>deviate.</em></h2>
+    <p>Some situations warrant more frequent or different screening:</p>
+    <ul>
+      <li>A previous abnormal Pap or HPV-positive result — follow-up is dictated by the specific finding.</li>
+      <li>History of cervical precancer (CIN2 or CIN3) — closer surveillance for 25 years.</li>
+      <li>Immunocompromise, including HIV — more frequent screening.</li>
+      <li>DES exposure in utero — specialized guidelines apply.</li>
+    </ul>
+
+    <p>In any of these cases, we follow a personalized schedule rather than the default. If you're unsure where you fit, come in — we'll map it out, and you'll leave knowing exactly when you're next due.</p>
+
+    <p style="text-align:center;font-style:italic;color:var(--wine);font-size:28px;margin:48px 0 0;">— Dr. S.</p>
+    
+  </article>
+
+  <aside class="side-right">
+    <h5>At a glance</h5>
+    <div class="fact">
+      <div class="big"><em>21</em></div>
+      <div class="small">Age at which Pap screening begins for most women, regardless of sexual history.</div>
+    </div>
+<div class="fact">
+      <div class="big">3 <em>yrs</em></div>
+      <div class="small">Interval for Pap alone in the 21–29 age group.</div>
+    </div>
+<div class="fact">
+      <div class="big">5 <em>yrs</em></div>
+      <div class="small">Interval for HPV testing or co-testing after age 30.</div>
+    </div>
+<div class="fact">
+      <div class="big"><em>65</em></div>
+      <div class="small">Age screening can stop, given adequate prior negative results.</div>
+    </div>
+<div class="fact">
+      <div class="big">10+ <em>yrs</em></div>
+      <div class="small">Typical time from persistent HPV to cervical cancer.</div>
+    </div>
+<div class="fact">
+      <div class="big"><em>Yes</em></div>
+      <div class="small">Still come in annually. The visit matters even when the Pap doesn't.</div>
+    </div>
+  </aside>
+</div>
+
+<div class="art-author">
+  <div class="portrait">S</div>
+  <div>
+    <div class="meta-by">About the author</div>
+    <h4>Dr. Symone</h4>
+    <p>Board-certified OBGYN, solo practitioner at Providence, and the one who'll see you at every visit from first intake through postpartum.</p>
+  </div>
+  <a href="../about.html" class="btn">Read her story <span class="arrow">→</span></a>
+</div>
+
+<section class="related">
+  <div class="head">
+    <div>
+      <span class="eyebrow">Keep reading</span>
+      <h2>More from the <em>reading room.</em></h2>
+    </div>
+    <a href="../resources.html">All articles →</a>
+  </div>
+  <div class="r-grid">
+    
+    <a class="r-card" href="first-prenatal-visit.html">
+      <span class="rcat">Pregnancy · 6 min</span>
+      <h4>Your first prenatal visit: <em>what actually happens.</em></h4>
+      <div class="rfoot"><span>Feb 2026</span><span class="rread">Read →</span></div>
+    </a>
+
+    <a class="r-card" href="hormone-therapy-2026.html">
+      <span class="rcat">Menopause · 9 min</span>
+      <h4>Hormone therapy in 2026: <em>the current evidence.</em></h4>
+      <div class="rfoot"><span>Jan 2026</span><span class="rread">Read →</span></div>
+    </a>
+
+    <a class="r-card" href="trying-to-conceive.html">
+      <span class="rcat">Fertility · 8 min</span>
+      <h4>Trying to conceive: <em>when to seek help.</em></h4>
+      <div class="rfoot"><span>Oct 2025</span><span class="rread">Read →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Questions that need a person?</span>
+  <h2>Let's <em>talk through it.</em></h2>
+  <p class="lede">Reading only goes so far. Request a visit — we'll make room to walk through whatever's on your mind, unhurried and in person.</p>
+  <div class="ctas">
+    <a href="../book.html" class="btn primary">Request a visit <span class="arrow">→</span></a>
+    <a href="../contact.html" class="btn gold">Call (702) 555-0142</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="../services.html">Prenatal &amp; obstetrics</a></li><li><a href="../services.html">Well-woman exams</a></li><li><a href="../services.html">Fertility support</a></li><li><a href="../services.html">Menopause care</a></li><li><a href="../services.html">Gyn surgery</a></li><li><a href="../services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="../about.html">About Dr. Symone</a></li><li><a href="../about.html">Our values</a></li><li><a href="../book.html">New patient info</a></li><li><a href="../resources.html">Pregnancy resources</a></li><li><a href="../faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="../contact.html">Summerlin Medical Plaza</a></li><li><a href="../contact.html">Suite 200</a></li><li><a href="../contact.html">Las Vegas, NV 89135</a></li><li><a href="../contact.html">(702) 555-0142</a></li><li><a href="../contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · all rights reserved</span>
+    <span class="tagline">Fearfully made. Faithfully cared for.</span>
+    <span>Privacy · HIPAA · Accessibility</span>
+  </div>
+</footer>
+
+</body>
+</html>

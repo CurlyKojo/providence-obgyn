@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About Dr. Symone — Providence OBGYN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
+<style>
+  /* About-specific hero with portrait */
+  .about-hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-2);
+    min-height: 640px;
+  }
+  .about-hero .left { padding: 96px 64px 80px; display: flex; flex-direction: column; justify-content: center; }
+  .about-hero .crumbs { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; }
+  .about-hero .crumbs a { color: var(--ink-light); }
+  .about-hero .crumbs .sep { margin: 0 8px; color: var(--wine); }
+  .about-hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(52px, 6.2vw, 96px); line-height: 0.98;
+    letter-spacing: -0.025em; margin: 20px 0 24px;
+  }
+  .about-hero h1 em { font-style: italic; color: var(--wine); }
+  .about-hero .lede { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--ink-soft); line-height: 1.45; max-width: 520px; }
+  .about-hero .sig { font-family: 'Fraunces', serif; font-style: italic; font-size: 44px; color: var(--wine); margin-top: 40px; }
+  .about-hero .sig-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-light); text-transform: uppercase; margin-top: 4px; }
+
+  .about-hero .right { position: relative; }
+  .portrait-frame {
+    position: absolute; inset: 56px 56px 56px 0;
+    background: var(--paper);
+    padding: 16px;
+    border: 1px solid var(--rule-2);
+  }
+  .portrait-frame .placeholder { position: absolute; inset: 16px; }
+  .portrait-corner {
+    position: absolute; bottom: -20px; right: 32px;
+    background: var(--wine); color: var(--paper);
+    padding: 14px 22px;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 18px;
+    box-shadow: 0 12px 30px -12px rgba(62,13,24,0.5);
+  }
+  .portrait-corner small { display: block; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; margin-top: 4px; }
+
+  /* Story section */
+  section.story { padding: 120px 64px; border-bottom: 1px solid var(--rule); }
+  .story-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
+  .story-inner .sticky { position: sticky; top: 120px; }
+  .story-inner h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(40px, 4.4vw, 58px); line-height: 1.05; letter-spacing: -0.022em; margin: 16px 0 0; }
+  .story-inner h2 em { font-style: italic; color: var(--wine); }
+  .story-body { font-family: 'Cormorant Garamond', serif; font-size: 21px; line-height: 1.65; color: var(--ink-soft); }
+  .story-body p { margin: 0 0 22px; }
+  .story-body p.drop::first-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 74px; color: var(--wine); float: left; line-height: 0.8; margin: 8px 10px 0 0; }
+  .story-body p strong { color: var(--ink); font-family: 'Fraunces', serif; font-weight: 500; }
+  .story-pull { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; line-height: 1.4; color: var(--ink); padding: 28px 0 28px 28px; border-left: 2px solid var(--gold); margin: 32px 0; }
+
+  /* Credentials grid */
+  section.credentials { padding: 110px 64px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+  .cred-head { text-align: center; max-width: 700px; margin: 0 auto 72px; }
+  .cred-head h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(40px, 4.4vw, 58px); line-height: 1.05; letter-spacing: -0.02em; margin: 18px 0 0; }
+  .cred-head h2 em { font-style: italic; color: var(--wine); }
+  .cred-grid { display: grid; grid-template-columns: repeat(2, 1fr); max-width: 1100px; margin: 0 auto; border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+  .cred {
+    padding: 36px 40px;
+    border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    background: var(--paper);
+  }
+  .cred .yr { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--wine); }
+  .cred h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; margin: 10px 0 4px; }
+  .cred .org { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--ink-soft); }
+  .cred p { font-size: 14px; color: var(--ink-soft); margin: 10px 0 0; line-height: 1.55; }
+
+  /* Philosophy (wine) */
+  section.philo {
+    padding: 120px 64px; background: var(--wine-deep); color: var(--paper);
+    position: relative; overflow: hidden;
+  }
+  section.philo::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle at 15% 10%, rgba(194,162,90,0.12), transparent 50%), radial-gradient(circle at 85% 90%, rgba(194,162,90,0.08), transparent 50%); pointer-events: none; }
+  .philo-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; position: relative; }
+  .philo-grid .eyebrow { color: #c2a25a; }
+  .philo-grid .eyebrow::before { background: #c2a25a; }
+  .philo-grid h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(38px, 4.2vw, 54px); line-height: 1.05; letter-spacing: -0.02em; margin: 18px 0 0; }
+  .philo-grid h2 em { font-style: italic; color: #c2a25a; }
+  .philo-rows { display: grid; gap: 0; }
+  .philo-row {
+    padding: 26px 0; border-bottom: 1px solid rgba(244,239,230,0.15);
+    display: grid; grid-template-columns: 80px 1fr; gap: 28px; align-items: baseline;
+  }
+  .philo-row:first-child { border-top: 1px solid rgba(244,239,230,0.15); }
+  .philo-row .num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 44px; color: #c2a25a; line-height: 1; }
+  .philo-row h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 26px; letter-spacing: -0.01em; margin: 0 0 8px; color: var(--paper); }
+  .philo-row p { font-size: 15px; color: rgba(244,239,230,0.8); margin: 0; line-height: 1.6; max-width: 560px; }
+
+  /* Office / practice */
+  section.practice { padding: 120px 64px; border-bottom: 1px solid var(--rule); }
+  .practice-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .practice-card { background: var(--paper); border: 1px solid var(--rule-2); }
+  .practice-card .img-frame { aspect-ratio: 4/3; }
+  .practice-card .body { padding: 24px 26px 28px; }
+  .practice-card h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .practice-card h4 em { font-style: italic; color: var(--wine); }
+  .practice-card p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+
+  /* Timeline / stats */
+  section.stats { padding: 90px 64px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+  .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .stat { text-align: center; }
+  .stat .n { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 72px; line-height: 1; color: var(--wine); letter-spacing: -0.02em; }
+  .stat .n sup { font-size: 30px; color: var(--gold); font-style: normal; margin-left: 4px; vertical-align: super; }
+  .stat .lab { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-light); text-transform: uppercase; margin-top: 10px; }
+
+  @media (max-width: 1100px) {
+    .about-hero { grid-template-columns: 1fr; }
+    .about-hero .left { padding: 64px 40px; }
+    .portrait-frame { position: relative; inset: auto; margin: 0 40px 64px; aspect-ratio: 4/5; }
+    .portrait-frame .placeholder { inset: 16px; }
+    .story-inner, .philo-grid { grid-template-columns: 1fr; gap: 40px; }
+    .story-inner .sticky { position: static; }
+    .cred-grid { grid-template-columns: 1fr; }
+    .practice-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  }
+  @media (max-width: 620px) {
+    .about-hero .left, section.story, section.credentials, section.philo, section.practice, section.stats { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+<header class="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="services.html">Services</a>
+    <a href="resources.html">Resources</a>
+    <a href="portal.html">Patient Portal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="about-hero">
+  <div class="left">
+    <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>About Dr. Symone</div>
+    <span class="eyebrow" style="margin-top:18px;display:inline-flex">The founder</span>
+    <h1>Known by <em>name.</em><br>Cared for by <em>one&nbsp;doctor.</em></h1>
+    <p class="lede">Dr. Symone founded Providence because the best care she'd ever witnessed happened in small rooms, with unhurried time, and by a doctor who stayed.</p>
+    <div class="sig">Dr. Symone</div>
+    <div class="sig-sub">Founder · Board-certified OBGYN</div>
+  </div>
+  <div class="right">
+    <div class="portrait-frame">
+      <div class="placeholder"><div class="tag"><strong>Portrait · editorial</strong>Dr. Symone · warm daylight<br>4:5 frame · soft focus bg</div></div>
+      <div class="portrait-corner">Twenty years, one practice<small>Las Vegas, Nevada</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="story-inner">
+    <div class="sticky">
+      <span class="eyebrow">Her story</span>
+      <h2>Why Providence <em>exists.</em></h2>
+    </div>
+    <div class="story-body">
+      <p class="drop">For twenty years, Dr. Symone practiced inside bigger systems — nine-minute visits, rotating panels, the quiet frustration of not being able to truly <strong>know</strong> the women she was caring for. Good medicine, yes, but not the kind she'd been called to.</p>
+      <p>Providence is the answer to that ache. A solo practice by design: one doctor, one familiar face, and the unhurried time good medicine actually requires. Appointments run thirty to sixty minutes. Every message is read by Dr. Symone. Every story is remembered.</p>
+      <div class="story-pull">"When a woman walks into my office, I want her to feel two things — that she has been heard, and that she will be remembered. Everything else we do flows from that."</div>
+      <p>Dr. Symone is a Las Vegas native, trained on the East Coast, and boarded in Obstetrics &amp; Gynecology since 2005. Over two decades she's walked with hundreds of women through their first visits, their first pregnancies, their hardest diagnoses, and the quiet seasons in between. She delivers at <strong>Summerlin Hospital</strong> and sees patients exclusively at our Summerlin office — one address, one phone number, one doctor.</p>
+      <p>Outside of medicine, she is a wife, a mother of three, and a person of deep faith. Those parts of her life inform — though never dictate — the care you'll receive. Every patient is welcomed exactly as she is.</p>
+    </div>
+  </div>
+</section>
+
+<section class="credentials">
+  <div class="cred-head">
+    <span class="eyebrow">Background</span>
+    <h2>Training &amp; <em>credentials.</em></h2>
+  </div>
+  <div class="cred-grid">
+    <div class="cred"><div class="yr">2005 — Present</div><h4>Board Certification</h4><div class="org">American Board of Obstetrics &amp; Gynecology</div><p>Maintained continuously for twenty-plus years, with annual re-certification and ongoing CME.</p></div>
+    <div class="cred"><div class="yr">2001 — 2005</div><h4>Residency, OBGYN</h4><div class="org">Tulane University School of Medicine</div><p>Four-year residency in obstetrics &amp; gynecology with over 600 deliveries and full surgical training.</p></div>
+    <div class="cred"><div class="yr">1997 — 2001</div><h4>Doctor of Medicine</h4><div class="org">Howard University College of Medicine</div><p>M.D., with early research focus on maternal-fetal medicine and women's preventive care.</p></div>
+    <div class="cred"><div class="yr">1993 — 1997</div><h4>Bachelor of Science</h4><div class="org">Spelman College, B.S. Biology</div><p>Graduated <em>magna cum laude</em> · Phi Beta Kappa · pre-medicine honors track.</p></div>
+    <div class="cred"><div class="yr">Memberships</div><h4>Professional affiliations</h4><div class="org">ACOG · AMA · Clark County Medical Society</div><p>Active fellow, American College of Obstetricians &amp; Gynecologists; member of the AMA and local medical society.</p></div>
+    <div class="cred"><div class="yr">Hospital</div><h4>Delivering privileges</h4><div class="org">Summerlin Hospital Medical Center</div><p>Full privileges for vaginal and cesarean delivery; consulting privileges at Southern Hills Hospital.</p></div>
+  </div>
+</section>
+
+<section class="philo">
+  <div class="philo-grid">
+    <div>
+      <span class="eyebrow">The practice</span>
+      <h2>A small set of <em>non-negotiables.</em></h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.5;color:rgba(244,239,230,0.75);margin-top:24px;max-width:380px;">Every decision at Providence — from our room size to our scheduling rhythm — runs through these five convictions.</p>
+    </div>
+    <div class="philo-rows">
+      <div class="philo-row"><div class="num">i.</div><div><h4>Time is the medicine.</h4><p>Thirty to sixty minutes per visit. No nine-minute hallways. The answers we need take the time they take.</p></div></div>
+      <div class="philo-row"><div class="num">ii.</div><div><h4>One doctor. Every visit.</h4><p>You will never be handed off mid-pregnancy. You will never explain your story twice. Continuity is the point.</p></div></div>
+      <div class="philo-row"><div class="num">iii.</div><div><h4>Evidence above opinion.</h4><p>Modern, evidence-based guidelines govern every clinical recommendation — including the ones that are hard to hear.</p></div></div>
+      <div class="philo-row"><div class="num">iv.</div><div><h4>Dignity before efficiency.</h4><p>The exam room is a respected conversation. Warm gowns, private dressing, no one enters without a knock.</p></div></div>
+      <div class="philo-row"><div class="num">v.</div><div><h4>Every woman. Every season.</h4><p>First periods to last postpartum visits, teen exams to menopause consultations — all welcomed, all kept.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="practice">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">The office</span>
+      <h2>A quiet room, <em>made on purpose.</em></h2>
+    </div>
+    <p class="aside">We designed Providence to feel more like a considered home than a clinic — because the spaces we heal in are not neutral.</p>
+  </div>
+  <div class="practice-grid">
+    <div class="practice-card">
+      <div class="img-frame" style="aspect-ratio:4/3"><div class="placeholder"><div class="tag"><strong>Reception</strong>Warm wood, low light<br>linen upholstery</div></div></div>
+      <div class="body"><h4>Reception · <em>a welcome</em></h4><p>No clipboards on arrival. Patients are greeted by name, offered tea, and seated — never at a check-in window.</p></div>
+    </div>
+    <div class="practice-card">
+      <div class="img-frame" style="aspect-ratio:4/3"><div class="placeholder"><div class="tag"><strong>Exam room</strong>Soft daylight<br>warming gowns &amp; linens</div></div></div>
+      <div class="body"><h4>Exam rooms · <em>quiet</em></h4><p>Two private rooms with warming drawers, proper dressing space, and seated conversation before any exam begins.</p></div>
+    </div>
+    <div class="practice-card">
+      <div class="img-frame" style="aspect-ratio:4/3"><div class="placeholder"><div class="tag"><strong>Consult room</strong>Framed botanicals<br>conversation-first</div></div></div>
+      <div class="body"><h4>Consult room · <em>a conversation</em></h4><p>A dedicated non-clinical room for results review, family planning, and the harder conversations we need time for.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="n">20<sup>+</sup></div><div class="lab">Years practicing</div></div>
+    <div class="stat"><div class="n">1,200<sup>+</sup></div><div class="lab">Babies delivered</div></div>
+    <div class="stat"><div class="n">30–60</div><div class="lab">Minutes per visit</div></div>
+    <div class="stat"><div class="n">1</div><div class="lab">Doctor · always</div></div>
+  </div>
+</section>
+
+<section class="quote">
+  <span class="mark">"</span>
+  <p>Dr. Symone delivered my first two babies. When I came back fifteen years later for perimenopause, she remembered their names — and my sister's, too.</p>
+  <span class="attrib">Patient · 15 years</span>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Come say hello</span>
+  <h2>The door is <em>open.</em></h2>
+  <p class="lede">New-patient visits are 60 minutes, unhurried, and with Dr. Symone. Request one below, or call and speak with our front desk directly.</p>
+  <div class="ctas">
+    <a href="book.html" class="btn primary">Request a visit <span class="arrow">→</span></a>
+    <a href="contact.html" class="btn gold">Call (702) 555-0142</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="services.html">Prenatal &amp; obstetrics</a></li><li><a href="services.html">Well-woman exams</a></li><li><a href="services.html">Fertility support</a></li><li><a href="services.html">Menopause care</a></li><li><a href="services.html">Gyn surgery</a></li><li><a href="services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="about.html">About Dr. Symone</a></li><li><a href="about.html">Our values</a></li><li><a href="book.html">New patient info</a></li><li><a href="resources.html">Pregnancy resources</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="contact.html">Summerlin Medical Plaza</a></li><li><a href="contact.html">Suite 200</a></li><li><a href="contact.html">Las Vegas, NV 89135</a></li><li><a href="contact.html">(702) 555-0142</a></li><li><a href="contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · Solo practice</span>
+    <span class="tagline">Every woman, every season.</span>
+    <span>Privacy · Accessibility · Patient rights</span>
+  </div>
+</footer>
+</body>
+</html>

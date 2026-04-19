@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Services — Providence OBGYN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
+<style>
+  /* Index bar */
+  .svc-index { background: var(--paper-2); border-bottom: 1px solid var(--rule); padding: 24px 64px; position: sticky; top: 92px; z-index: 40; }
+  .svc-index-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .svc-index .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-light); text-transform: uppercase; }
+  .svc-index a { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--ink-soft); border-bottom: 1px solid transparent; padding-bottom: 2px; transition: all .15s; }
+  .svc-index a:hover { color: var(--wine); border-color: var(--wine); }
+
+  /* Each service block */
+  section.svc { padding: 110px 64px; border-bottom: 1px solid var(--rule); }
+  section.svc.alt { background: var(--paper-2); }
+  .svc-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
+  .svc-inner.reverse { grid-template-columns: 1.1fr 1fr; }
+  .svc-inner.reverse .svc-img { order: -1; }
+  .svc-text .num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 80px; color: var(--gold); line-height: 0.8; opacity: 0.55; display: block; margin-bottom: 8px; }
+  .svc-text h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(44px, 4.8vw, 64px); line-height: 1.02; letter-spacing: -0.022em; margin: 8px 0 22px; }
+  .svc-text h2 em { font-style: italic; color: var(--wine); }
+  .svc-text .lede { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.5; color: var(--ink-soft); margin: 0 0 28px; max-width: 520px; }
+  .svc-list { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 0; max-width: 500px; }
+  .svc-list li { padding: 14px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 22px 1fr; gap: 14px; align-items: baseline; font-size: 15px; color: var(--ink); }
+  .svc-list li:first-child { border-top: 1px solid var(--rule); }
+  .svc-list li::before { content: ""; display: inline-block; width: 8px; height: 8px; border: 1px solid var(--wine); border-radius: 50%; background: var(--wine); transform: translateY(4px); }
+  .svc-list li .desc { color: var(--ink-light); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; display: block; margin-top: 2px; }
+  .svc-ctas { display: flex; gap: 10px; }
+
+  .svc-img { position: relative; }
+  .svc-img .img-frame { aspect-ratio: 4/5; position: relative; }
+  .svc-img .chip {
+    position: absolute; z-index: 3; background: var(--paper); border: 1px solid var(--rule-2);
+    padding: 16px 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+    color: var(--ink-soft); text-transform: uppercase; box-shadow: 0 8px 20px -8px rgba(0,0,0,0.12);
+  }
+  .svc-img .chip strong { display: block; font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; color: var(--wine); text-transform: none; letter-spacing: -0.01em; font-weight: 400; margin-top: 4px; }
+  .chip.tl { top: 24px; left: -24px; }
+  .chip.br { bottom: 32px; right: -24px; }
+
+  /* Visit length comparison */
+  section.compare { padding: 120px 64px; border-bottom: 1px solid var(--rule); }
+  .compare-inner { max-width: 1100px; margin: 0 auto; }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--ink); margin-top: 48px; }
+  .compare-col { padding: 40px 40px 44px; }
+  .compare-col.them { background: var(--paper); border-right: 1px solid var(--ink); }
+  .compare-col.us { background: var(--wine-deep); color: var(--paper); }
+  .compare-col .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .compare-col.them .lbl { color: var(--ink-light); }
+  .compare-col.us .lbl { color: #c2a25a; }
+  .compare-col h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 36px; margin: 14px 0 24px; letter-spacing: -0.015em; }
+  .compare-col.us h3 em { font-style: italic; color: #c2a25a; }
+  .compare-col ul { list-style: none; padding: 0; margin: 0; }
+  .compare-col li { padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 15px; display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: baseline; }
+  .compare-col.us li { border-color: rgba(244,239,230,0.15); color: rgba(244,239,230,0.9); }
+  .compare-col.them li::before { content: "×"; color: #a88; font-size: 18px; line-height: 1; }
+  .compare-col.us li::before { content: "✓"; color: #c2a25a; font-size: 14px; line-height: 1; }
+
+  /* Insurance */
+  section.insurance { padding: 100px 64px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+  .ins-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start; }
+  .ins-inner h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(36px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.02em; margin: 16px 0 0; }
+  .ins-inner h2 em { font-style: italic; color: var(--wine); }
+  .ins-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--rule-2); border-left: 1px solid var(--rule-2); }
+  .ins-item { padding: 20px 22px; border-right: 1px solid var(--rule-2); border-bottom: 1px solid var(--rule-2); background: var(--paper); display: flex; flex-direction: column; gap: 4px; }
+  .ins-item .n { font-family: 'Fraunces', serif; font-size: 18px; letter-spacing: -0.01em; }
+  .ins-item .note { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--ink-light); text-transform: uppercase; }
+
+  @media (max-width: 1100px) {
+    .svc-index { top: 0; position: relative; }
+    .svc-inner, .svc-inner.reverse { grid-template-columns: 1fr; gap: 40px; }
+    .svc-inner.reverse .svc-img { order: 0; }
+    .chip.tl { left: 0; top: 16px; }
+    .chip.br { right: 0; bottom: 16px; }
+    .compare-grid, .ins-inner, .ins-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .svc-index, section.svc, section.compare, section.insurance { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+<header class="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="resources.html">Resources</a>
+    <a href="portal.html">Patient Portal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="inner">
+    <div>
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>Services</div>
+      <span class="eyebrow" style="margin-top:12px">Every season, every concern</span>
+      <h1>Full-spectrum OBGYN, <em>one doctor.</em></h1>
+    </div>
+    <p class="lede">From a teen's first visit through pregnancy, perimenopause, and beyond — the full arc of OBGYN care, kept intentionally within one intimate practice.</p>
+  </div>
+</section>
+
+<div class="svc-index">
+  <div class="svc-index-inner">
+    <span class="lbl">Jump to —</span>
+    <a href="#obstetrics">Obstetrics</a>
+    <a href="#annual">Annual exams</a>
+    <a href="#fertility">Fertility</a>
+    <a href="#menopause">Menopause</a>
+    <a href="#surgery">Gyn surgery</a>
+    <a href="#teens">Adolescent</a>
+  </div>
+</div>
+
+<!-- 01 Obstetrics -->
+<section class="svc" id="obstetrics">
+  <div class="svc-inner">
+    <div class="svc-text">
+      <span class="eyebrow">01 · Obstetrics</span>
+      <span class="num">i.</span>
+      <h2>Prenatal &amp; <em>delivery.</em></h2>
+      <p class="lede">Your whole pregnancy, with one doctor — from the first positive test through the six-week postpartum visit. Delivery at Summerlin Hospital, nights and weekends included.</p>
+      <ul class="svc-list">
+        <li><div><strong>Preconception counseling</strong><span class="desc">Before you're pregnant — genetic, medical, and lifestyle review.</span></div></li>
+        <li><div><strong>Prenatal visits</strong><span class="desc">In-office ultrasound, unhurried every time, 20–45 minutes each.</span></div></li>
+        <li><div><strong>High-risk co-management</strong><span class="desc">MFM collaboration when needed — we stay in the loop.</span></div></li>
+        <li><div><strong>Delivery &amp; postpartum</strong><span class="desc">Summerlin Hospital · continuous care through 6-week visit.</span></div></li>
+        <li><div><strong>Lactation support</strong><span class="desc">In-office IBCLC available the week after delivery.</span></div></li>
+      </ul>
+      <div class="svc-ctas">
+        <a href="book.html" class="btn primary">Schedule your first visit <span class="arrow">→</span></a>
+        <a href="resources.html" class="btn">Pregnancy guide</a>
+      </div>
+    </div>
+    <div class="svc-img">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Prenatal visit</strong>Ultrasound screen · warm hands<br>linen gown · daylight</div></div></div>
+      <div class="chip tl">Per-visit time<strong>30–45 min</strong></div>
+      <div class="chip br">Delivery at<strong>Summerlin Hospital</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 Annual -->
+<section class="svc alt" id="annual">
+  <div class="svc-inner reverse">
+    <div class="svc-text">
+      <span class="eyebrow">02 · Annual care</span>
+      <span class="num">ii.</span>
+      <h2>Well-woman <em>exams.</em></h2>
+      <p class="lede">The quiet yearly visit that does the most work over a lifetime — screening, conversation, prevention — built around the time it actually takes to be thorough.</p>
+      <ul class="svc-list">
+        <li><div><strong>Annual physical &amp; Pap</strong><span class="desc">Per current ACOG guidelines, with clear reasoning on cadence.</span></div></li>
+        <li><div><strong>Breast exam &amp; imaging referral</strong><span class="desc">Clinical breast exam + coordinated mammography when indicated.</span></div></li>
+        <li><div><strong>STI &amp; HPV screening</strong><span class="desc">Private, judgment-free, same-visit or scheduled separately.</span></div></li>
+        <li><div><strong>Contraceptive counseling</strong><span class="desc">Every modern option walked through — including IUDs placed in-office.</span></div></li>
+        <li><div><strong>Preventive labs</strong><span class="desc">Cholesterol, thyroid, vitamin D, iron — reviewed together.</span></div></li>
+      </ul>
+      <div class="svc-ctas">
+        <a href="book.html" class="btn primary">Book your annual <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="svc-img">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Exam room · annual</strong>Warmed linens · low light<br>seated conversation first</div></div></div>
+      <div class="chip tl">Average visit<strong>45 minutes</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Fertility -->
+<section class="svc" id="fertility">
+  <div class="svc-inner">
+    <div class="svc-text">
+      <span class="eyebrow">03 · Fertility support</span>
+      <span class="num">iii.</span>
+      <h2>Fertility <em>support.</em></h2>
+      <p class="lede">The steady hand in the waiting. Basic workups and cycle guidance within our practice — with clear referrals to a trusted reproductive endocrinologist when it's time.</p>
+      <ul class="svc-list">
+        <li><div><strong>Preconception workup</strong><span class="desc">Hormone panels, semen analysis coordination, anatomy review.</span></div></li>
+        <li><div><strong>Cycle tracking &amp; timing</strong><span class="desc">Ovulation support, luteal phase review, natural methods.</span></div></li>
+        <li><div><strong>Early pregnancy loss care</strong><span class="desc">Compassionate medical management, testing, and follow-up.</span></div></li>
+        <li><div><strong>REI referrals</strong><span class="desc">Partnered with a trusted Las Vegas reproductive endocrinology practice.</span></div></li>
+      </ul>
+      <div class="svc-ctas">
+        <a href="book.html" class="btn primary">Request a consult <span class="arrow">→</span></a>
+        <a href="faq.html" class="btn">Common questions</a>
+      </div>
+    </div>
+    <div class="svc-img">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Consult room</strong>Botanical art · linen chairs<br>results on paper, reviewed together</div></div></div>
+      <div class="chip br">Consult length<strong>60 minutes</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Menopause -->
+<section class="svc alt" id="menopause">
+  <div class="svc-inner reverse">
+    <div class="svc-text">
+      <span class="eyebrow">04 · Menopause care</span>
+      <span class="num">iv.</span>
+      <h2>Perimenopause &amp; <em>menopause.</em></h2>
+      <p class="lede">Evidence-based hormone counseling for a season the medical system too often rushes. Sleep, mood, bone, libido — all of it taken seriously.</p>
+      <ul class="svc-list">
+        <li><div><strong>Perimenopause consultation</strong><span class="desc">60-minute visit — symptom mapping, labs, a written plan.</span></div></li>
+        <li><div><strong>Hormone therapy (HRT)</strong><span class="desc">Current NAMS-aligned recommendations; compounded options when appropriate.</span></div></li>
+        <li><div><strong>Bone &amp; cardiovascular screening</strong><span class="desc">DEXA coordination, lipid review, preventive framework.</span></div></li>
+        <li><div><strong>Sleep &amp; mood support</strong><span class="desc">Integrated — not a separate problem to be referred out.</span></div></li>
+        <li><div><strong>Intimacy &amp; pelvic health</strong><span class="desc">Vaginal estrogen, pelvic floor referrals, candid conversation.</span></div></li>
+      </ul>
+      <div class="svc-ctas">
+        <a href="book.html" class="btn primary">Book a consultation <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="svc-img">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Portrait · midlife</strong>Editorial · woman at window<br>warm neutral palette</div></div></div>
+      <div class="chip tl">First consult<strong>60 minutes</strong></div>
+      <div class="chip br">Written plan<strong>Always included</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Surgery -->
+<section class="svc" id="surgery">
+  <div class="svc-inner">
+    <div class="svc-text">
+      <span class="eyebrow">05 · Surgical care</span>
+      <span class="num">v.</span>
+      <h2>Minimally-invasive <em>gyn surgery.</em></h2>
+      <p class="lede">When surgery is the right answer, Dr. Symone performs procedures at partnered Las Vegas hospitals — with pre-op planning done in our office, unhurried.</p>
+      <ul class="svc-list">
+        <li><div><strong>Laparoscopic procedures</strong><span class="desc">Cyst removal, endometriosis, tubal ligation, fibroid management.</span></div></li>
+        <li><div><strong>Hysteroscopy</strong><span class="desc">Diagnostic and therapeutic — polyp and fibroid removal.</span></div></li>
+        <li><div><strong>Hysterectomy</strong><span class="desc">Laparoscopic and vaginal approaches; shared decision-making.</span></div></li>
+        <li><div><strong>Endometrial ablation</strong><span class="desc">Outpatient option for heavy menstrual bleeding.</span></div></li>
+        <li><div><strong>In-office procedures</strong><span class="desc">IUDs, colposcopy, endometrial biopsy — with warm rooms.</span></div></li>
+      </ul>
+      <div class="svc-ctas">
+        <a href="book.html" class="btn primary">Request a surgical consult <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="svc-img">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Surgical pre-op</strong>Consult room · paper diagrams<br>two chairs · patient-led pace</div></div></div>
+      <div class="chip br">Partner hospital<strong>Summerlin Hospital</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 Teens -->
+<section class="svc alt" id="teens">
+  <div class="svc-inner reverse">
+    <div class="svc-text">
+      <span class="eyebrow">06 · Adolescent</span>
+      <span class="num">vi.</span>
+      <h2>A gentle <em>first visit.</em></h2>
+      <p class="lede">For teens, a first gynecology visit sets a lifetime of trust. We build ours around conversation — no exam required unless medically necessary, parents welcomed where helpful, privacy always.</p>
+      <ul class="svc-list">
+        <li><div><strong>Conversation-first visits</strong><span class="desc">Most first visits involve no physical exam — just listening.</span></div></li>
+        <li><div><strong>Period &amp; PMS guidance</strong><span class="desc">Cycles explained, options reviewed, reassurance given.</span></div></li>
+        <li><div><strong>HPV vaccination</strong><span class="desc">Full series with a parent-included care plan.</span></div></li>
+        <li><div><strong>Acne, PCOS, hormones</strong><span class="desc">When to worry, when to wait, and what to try first.</span></div></li>
+      </ul>
+      <div class="svc-ctas">
+        <a href="book.html" class="btn primary">Schedule a teen visit <span class="arrow">→</span></a>
+        <a href="resources.html" class="btn">Parents' guide</a>
+      </div>
+    </div>
+    <div class="svc-img">
+      <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Teen consult</strong>Quiet room · teen &amp; parent<br>conversation · no exam table</div></div></div>
+      <div class="chip tl">Age range<strong>12–18</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section class="compare">
+  <div class="compare-inner">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Why a solo practice</span>
+        <h2>A different <em>rhythm</em> of care.</h2>
+      </div>
+      <p class="aside">Most OBGYN offices run on 9-minute visits and rotating panels. We do not — and the difference is the whole point.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-col them">
+        <span class="lbl">Typical large practice</span>
+        <h3>The usual way</h3>
+        <ul>
+          <li>9–12 minute appointments</li>
+          <li>4–6 providers in rotation</li>
+          <li>New face at every prenatal visit</li>
+          <li>Messages answered by a pool</li>
+          <li>Hurried conversation, rushed exams</li>
+          <li>Your story restarts each visit</li>
+        </ul>
+      </div>
+      <div class="compare-col us">
+        <span class="lbl">Providence OBGYN</span>
+        <h3>The Providence <em>way</em></h3>
+        <ul>
+          <li>30–60 minute appointments</li>
+          <li>One doctor — Dr. Symone</li>
+          <li>Same face through every pregnancy</li>
+          <li>Messages read &amp; answered by Dr. Symone</li>
+          <li>Unhurried, seated, gowned-in-warm-linen</li>
+          <li>Your story remembered, start to finish</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Insurance -->
+<section class="insurance">
+  <div class="ins-inner">
+    <div>
+      <span class="eyebrow">Insurance &amp; payment</span>
+      <h2>Most <em>accepted.</em></h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink-soft);line-height:1.5;margin-top:18px;max-width:380px;">We accept most major PPO plans and will happily verify your specific coverage before your first visit. Self-pay options available.</p>
+      <a href="contact.html" class="btn" style="margin-top:24px">Verify my plan <span class="arrow">→</span></a>
+    </div>
+    <div class="ins-grid">
+      <div class="ins-item"><span class="n">Blue Cross Blue Shield</span><span class="note">PPO · In-network</span></div>
+      <div class="ins-item"><span class="n">Aetna</span><span class="note">PPO · In-network</span></div>
+      <div class="ins-item"><span class="n">Cigna</span><span class="note">PPO · In-network</span></div>
+      <div class="ins-item"><span class="n">United Healthcare</span><span class="note">Select plans</span></div>
+      <div class="ins-item"><span class="n">Anthem</span><span class="note">PPO · In-network</span></div>
+      <div class="ins-item"><span class="n">Tricare</span><span class="note">Standard · In-network</span></div>
+      <div class="ins-item"><span class="n">Sierra Health Options</span><span class="note">In-network</span></div>
+      <div class="ins-item"><span class="n">Self-pay</span><span class="note">Transparent pricing</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Ready when you are</span>
+  <h2>Book the visit that <em>fits you.</em></h2>
+  <p class="lede">Every new patient begins with a 60-minute first visit — no rush, no partial exam, no stranger at the door.</p>
+  <div class="ctas">
+    <a href="book.html" class="btn primary">Request a visit <span class="arrow">→</span></a>
+    <a href="contact.html" class="btn gold">Call (702) 555-0142</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="services.html">Prenatal &amp; obstetrics</a></li><li><a href="services.html">Well-woman exams</a></li><li><a href="services.html">Fertility support</a></li><li><a href="services.html">Menopause care</a></li><li><a href="services.html">Gyn surgery</a></li><li><a href="services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="about.html">About Dr. Symone</a></li><li><a href="about.html">Our values</a></li><li><a href="book.html">New patient info</a></li><li><a href="resources.html">Pregnancy resources</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="contact.html">Summerlin Medical Plaza</a></li><li><a href="contact.html">Suite 200</a></li><li><a href="contact.html">Las Vegas, NV 89135</a></li><li><a href="contact.html">(702) 555-0142</a></li><li><a href="contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · Solo practice</span>
+    <span class="tagline">Every woman, every season.</span>
+    <span>Privacy · Accessibility · Patient rights</span>
+  </div>
+</footer>
+</body>
+</html>

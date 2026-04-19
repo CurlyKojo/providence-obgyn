@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — Providence OBGYN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
+<style>
+  .contact-body { display: grid; grid-template-columns: 1.1fr 1fr; border-bottom: 1px solid var(--rule); min-height: 720px; }
+  .c-info { padding: 88px 64px; display: flex; flex-direction: column; justify-content: center; }
+  .c-info .lede { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.5; color: var(--ink-soft); max-width: 520px; margin: 18px 0 40px; }
+  .c-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; max-width: 560px; margin-bottom: 40px; }
+  .c-block .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--wine); text-transform: uppercase; margin-bottom: 8px; }
+  .c-block .v { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--ink); line-height: 1.25; letter-spacing: -0.01em; }
+  .c-block .v small { display: block; font-family: 'Inter', sans-serif; font-style: normal; font-size: 13px; color: var(--ink-light); margin-top: 6px; line-height: 1.5; }
+
+  .hours { max-width: 560px; border-top: 1px solid var(--rule); padding-top: 20px; }
+  .hours h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--wine); text-transform: uppercase; margin: 0 0 16px; }
+  .hr-row { display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 15px; align-items: baseline; }
+  .hr-row .d { font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; color: var(--ink); }
+  .hr-row .t { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft); letter-spacing: 0.06em; }
+  .hr-row .chip-hr { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--wine); text-transform: uppercase; }
+  .hr-row.closed .d, .hr-row.closed .t { color: var(--ink-light); opacity: 0.6; }
+
+  /* Big map */
+  .c-map { position: relative; overflow: hidden; background: var(--paper-2); }
+  .c-map .map-bg { position: absolute; inset: 0; background: linear-gradient(180deg, #e8dfcb 0%, #d5c9ad 100%); }
+  .c-map .roads {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, transparent 18%, rgba(86,19,33,0.22) 18%, rgba(86,19,33,0.22) 18.4%, transparent 18.4%),
+      linear-gradient(180deg, transparent 48%, rgba(28,25,23,0.15) 48%, rgba(28,25,23,0.15) 48.3%, transparent 48.3%),
+      linear-gradient(75deg, transparent 36%, rgba(28,25,23,0.1) 36%, rgba(28,25,23,0.1) 36.3%, transparent 36.3%),
+      linear-gradient(160deg, transparent 60%, rgba(28,25,23,0.08) 60%, rgba(28,25,23,0.08) 60.3%, transparent 60.3%),
+      linear-gradient(110deg, transparent 72%, rgba(58,58,58,0.1) 72%, rgba(58,58,58,0.1) 72.3%, transparent 72.3%),
+      repeating-linear-gradient(45deg, transparent 0 44px, rgba(58,58,58,0.05) 44px 46px);
+  }
+  .c-map .blobs {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 180px 110px at 25% 70%, rgba(86,19,33,0.08), transparent 60%),
+      radial-gradient(ellipse 140px 100px at 80% 25%, rgba(58,58,58,0.06), transparent 60%);
+  }
+  .c-map .pin-wrap { position: absolute; left: 52%; top: 45%; transform: translate(-50%, -100%); }
+  .c-map .pin-drop { width: 36px; height: 36px; background: var(--wine); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 3px solid var(--paper); box-shadow: 0 12px 20px -6px rgba(62,13,24,0.5); position: relative; }
+  .c-map .pin-drop::after { content: ""; position: absolute; inset: 8px; background: var(--paper); border-radius: 50%; }
+  .c-map .pin-label {
+    position: absolute; left: 52%; top: 45%;
+    transform: translate(-50%, calc(-100% - 30px));
+    background: var(--paper); border: 1px solid var(--rule-2);
+    padding: 12px 18px; white-space: nowrap;
+    box-shadow: 0 10px 26px -10px rgba(0,0,0,0.2);
+  }
+  .c-map .pin-label .n { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--wine); }
+  .c-map .pin-label .a { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; margin-top: 2px; }
+  .c-map .map-controls { position: absolute; top: 24px; right: 24px; display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--rule-2); }
+  .c-map .map-controls button { width: 36px; height: 36px; background: var(--paper); border: 0; border-bottom: 1px solid var(--rule-2); font-size: 18px; color: var(--ink-soft); cursor: pointer; }
+  .c-map .map-controls button:last-child { border-bottom: 0; }
+  .c-map .map-scale { position: absolute; bottom: 22px; left: 22px; background: var(--paper); border: 1px solid var(--rule-2); padding: 10px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-light); text-transform: uppercase; }
+  .c-map .get-dirs { position: absolute; bottom: 22px; right: 22px; }
+
+  /* Office moments */
+  section.office { padding: 110px 64px; border-bottom: 1px solid var(--rule); }
+  .office-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .office-grid .img-frame { aspect-ratio: 3/4; }
+  .office-grid .img-frame .placeholder .tag { font-size: 9px; }
+
+  /* Form / send us a message */
+  section.msg { padding: 120px 64px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+  .msg-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.3fr; gap: 72px; align-items: start; }
+  .msg-inner h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(38px, 4.2vw, 54px); line-height: 1.05; letter-spacing: -0.02em; margin: 16px 0 20px; }
+  .msg-inner h2 em { font-style: italic; color: var(--wine); }
+  .msg-form { background: var(--paper); border: 1px solid var(--rule-2); padding: 36px 34px; }
+  .msg-field { border: 1px solid var(--rule-2); padding: 12px 14px; margin-bottom: 10px; }
+  .msg-field .lab { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--wine); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .msg-field input, .msg-field select, .msg-field textarea { width: 100%; border: 0; outline: 0; background: transparent; font: inherit; font-size: 14px; font-family: 'Inter', sans-serif; color: var(--ink); }
+  .msg-field textarea { min-height: 120px; resize: vertical; }
+  .msg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .msg-submit { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .msg-submit .note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--ink-light); }
+
+  @media (max-width: 1100px) {
+    .contact-body { grid-template-columns: 1fr; }
+    .c-map { min-height: 460px; }
+    .c-blocks { grid-template-columns: 1fr; }
+    .office-grid { grid-template-columns: 1fr 1fr; }
+    .msg-inner { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 620px) {
+    .c-info, section.office, section.msg { padding-left: 24px; padding-right: 24px; }
+    .msg-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><span class="dot"></span>Now welcoming new patients · limited panel</span>
+  <span class="right">Summerlin Medical Plaza · (702) 555-0142</span>
+</div>
+<header class="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">P</div>
+    <div class="logo-text">
+      <div class="name">Providence <em>OBGYN</em></div>
+      <div class="sub">Dr. Symone · Las Vegas</div>
+    </div>
+  </a>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="resources.html">Resources</a>
+    <a href="portal.html">Patient Portal</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-phone">(702) 555-0142</span>
+    <a href="book.html" class="btn primary">Book a visit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="inner">
+    <div>
+      <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>Contact</div>
+      <span class="eyebrow" style="margin-top:12px">Visit, call, write</span>
+      <h1>Come see us <em>in Summerlin.</em></h1>
+    </div>
+    <p class="lede">One office, free parking, a person who answers the phone. The simple pieces — done right.</p>
+  </div>
+</section>
+
+<section class="contact-body">
+  <div class="c-info">
+    <span class="eyebrow">The office</span>
+    <p class="lede">Dr. Symone practices exclusively from our Summerlin Medical Plaza office. Everything happens here — including same-day labs, in-office ultrasound, and most procedures.</p>
+    <div class="c-blocks">
+      <div class="c-block">
+        <div class="k">Address</div>
+        <div class="v">Summerlin Medical Plaza<small>10001 Example Way · Suite 200<br>Las Vegas, NV 89135</small></div>
+      </div>
+      <div class="c-block">
+        <div class="k">Phone</div>
+        <div class="v">(702) 555-0142<small>Front desk · business hours<br>After-hours line for existing patients</small></div>
+      </div>
+      <div class="c-block">
+        <div class="k">Email</div>
+        <div class="v">hello@providenceobgyn.com<small>Non-urgent · reply within 1 business day<br>Not for medical questions — use the portal</small></div>
+      </div>
+      <div class="c-block">
+        <div class="k">Parking</div>
+        <div class="v">Free · on-site<small>Ground-level lot · adjacent to the entrance<br>ADA-accessible entry</small></div>
+      </div>
+    </div>
+
+    <div class="hours">
+      <h4>Office hours</h4>
+      <div class="hr-row"><span class="d">Monday</span><span class="t">8:00 am — 5:00 pm</span><span class="chip-hr">Open</span></div>
+      <div class="hr-row"><span class="d">Tuesday</span><span class="t">8:00 am — 5:00 pm</span><span class="chip-hr">Open</span></div>
+      <div class="hr-row"><span class="d">Wednesday</span><span class="t">8:00 am — 5:00 pm</span><span class="chip-hr">Open</span></div>
+      <div class="hr-row"><span class="d">Thursday</span><span class="t">8:00 am — 5:00 pm</span><span class="chip-hr">Open</span></div>
+      <div class="hr-row"><span class="d">Friday</span><span class="t">8:00 am — 12:00 pm</span><span class="chip-hr">Half day</span></div>
+      <div class="hr-row closed"><span class="d">Saturday</span><span class="t">—</span><span class="chip-hr">Closed</span></div>
+      <div class="hr-row closed"><span class="d">Sunday</span><span class="t">—</span><span class="chip-hr">Closed</span></div>
+    </div>
+  </div>
+
+  <div class="c-map">
+    <div class="map-bg"></div>
+    <div class="blobs"></div>
+    <div class="roads"></div>
+    <div class="pin-label"><div class="n">Providence OBGYN</div><div class="a">Summerlin · Suite 200</div></div>
+    <div class="pin-wrap"><div class="pin-drop"></div></div>
+    <div class="map-controls"><button>+</button><button>−</button></div>
+    <div class="map-scale">500 ft · Summerlin</div>
+    <a href="#" class="btn primary sm get-dirs">Get directions ↗</a>
+  </div>
+</section>
+
+<section class="office">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">A glimpse inside</span>
+      <h2>Quiet rooms, <em>on purpose.</em></h2>
+    </div>
+    <p class="aside">Designed by the same hands that run it — with warmth, privacy, and conversation in mind. Come by during hours, even just to say hello.</p>
+  </div>
+  <div class="office-grid">
+    <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Reception</strong>Warm wood · tea service<br>linen upholstery</div></div></div>
+    <div class="img-frame"><div class="placeholder deep"><div class="tag"><strong>Consult room</strong>Conversation-first<br>framed botanicals</div></div></div>
+    <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Exam room</strong>Warming drawer<br>soft daylight</div></div></div>
+    <div class="img-frame"><div class="placeholder"><div class="tag"><strong>Hallway</strong>Editorial portrait<br>wall of thanks</div></div></div>
+  </div>
+</section>
+
+<section class="msg">
+  <div class="msg-inner">
+    <div>
+      <span class="eyebrow">Send a note</span>
+      <h2>Not a booking — <em>just a hello.</em></h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.5;color:var(--ink-soft);margin:0 0 18px;max-width:420px;">For general questions, feedback, insurance verification, or anything that isn't an appointment. We reply within one business day.</p>
+      <p style="font-size:14px;color:var(--ink-light);margin:0;max-width:420px;line-height:1.6;"><strong style="color:var(--wine);font-weight:500;">Please don't share medical questions here</strong> — existing patients should use the secure <a href="portal.html" style="color:var(--wine);text-decoration:underline">patient portal</a> for anything clinical.</p>
+    </div>
+    <form class="msg-form">
+      <div class="msg-row">
+        <div class="msg-field"><span class="lab">Your name</span><input type="text" placeholder="First and last"/></div>
+        <div class="msg-field"><span class="lab">Relationship</span><select><option>Current patient</option><option>Considering becoming a patient</option><option>Other / general</option></select></div>
+      </div>
+      <div class="msg-row">
+        <div class="msg-field"><span class="lab">Email</span><input type="email" placeholder="you@example.com"/></div>
+        <div class="msg-field"><span class="lab">Phone (optional)</span><input type="tel" placeholder="(702) ·· — ··"/></div>
+      </div>
+      <div class="msg-field"><span class="lab">Subject</span><select><option>General question</option><option>Insurance / billing</option><option>Feedback about my visit</option><option>Media / press inquiry</option><option>Other</option></select></div>
+      <div class="msg-field"><span class="lab">Your message</span><textarea placeholder="A few sentences is plenty — we read every one."></textarea></div>
+      <div class="msg-submit">
+        <span class="note">Your information is never shared. Never.</span>
+        <button type="button" class="btn primary" onclick="alert('Thanks — we\'ll be in touch within one business day.')">Send message <span class="arrow">→</span></button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Ready when you are</span>
+  <h2>Skip the form, <em>book the visit.</em></h2>
+  <p class="lede">If you already know you'd like to come in, request an appointment directly — it's the fastest path to a time on the calendar.</p>
+  <div class="ctas">
+    <a href="book.html" class="btn primary">Request a visit <span class="arrow">→</span></a>
+    <a href="faq.html" class="btn gold">Read FAQ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">
+          <div class="name">Providence <em>OBGYN</em></div>
+          <div class="sub">Dr. Symone · Las Vegas</div>
+        </div>
+      </div>
+      <p>Fearfully made. Faithfully cared for.</p>
+    </div>
+    <div><h5>Care</h5><ul><li><a href="services.html">Prenatal &amp; obstetrics</a></li><li><a href="services.html">Well-woman exams</a></li><li><a href="services.html">Fertility support</a></li><li><a href="services.html">Menopause care</a></li><li><a href="services.html">Gyn surgery</a></li><li><a href="services.html">Adolescent care</a></li></ul></div>
+    <div><h5>Practice</h5><ul><li><a href="about.html">About Dr. Symone</a></li><li><a href="about.html">Our values</a></li><li><a href="book.html">New patient info</a></li><li><a href="resources.html">Pregnancy resources</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><h5>Visit</h5><ul><li><a href="contact.html">Summerlin Medical Plaza</a></li><li><a href="contact.html">Suite 200</a></li><li><a href="contact.html">Las Vegas, NV 89135</a></li><li><a href="contact.html">(702) 555-0142</a></li><li><a href="contact.html">hello@providenceobgyn.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Providence OBGYN · Solo practice</span>
+    <span class="tagline">Every woman, every season.</span>
+    <span>Privacy · Accessibility · Patient rights</span>
+  </div>
+</footer>
+</body>
+</html>
